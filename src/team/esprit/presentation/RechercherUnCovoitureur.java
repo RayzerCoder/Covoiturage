@@ -1,9 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class RechercherUnCovoitureur extends javax.swing.JFrame {
 
     public RechercherUnCovoitureur() {
         initComponents();
+        setTitle("Rechercher un Covoitureur");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")

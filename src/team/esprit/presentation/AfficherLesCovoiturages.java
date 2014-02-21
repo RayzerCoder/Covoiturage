@@ -1,9 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class AfficherLesCovoiturages extends javax.swing.JFrame {
 
     public AfficherLesCovoiturages() {
         initComponents();
+        setTitle("Afficher les covoiturages");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -18,17 +26,7 @@ public class AfficherLesCovoiturages extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        table_Covoiturages.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        table_Covoiturages.setModel(new AfficherLesCovoituragesTable());
         jScrollPane1.setViewportView(table_Covoiturages);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -86,7 +84,7 @@ public class AfficherLesCovoiturages extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_AfficherCovoiturageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AfficherCovoiturageActionPerformed
-        AfficherCovoiturage affichercovoiturage = new AfficherCovoiturage();
+        AfficherUnCovoiturage affichercovoiturage = new AfficherUnCovoiturage();
         affichercovoiturage.setVisible(true);
     }//GEN-LAST:event_boutton_AfficherCovoiturageActionPerformed
 

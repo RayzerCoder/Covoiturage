@@ -1,10 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class Accueil extends javax.swing.JFrame {
 
     public Accueil() {
         initComponents();
         setTitle("Accueil");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -107,12 +114,11 @@ public class Accueil extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_StatistiquesActionPerformed
 
     private void boutton_QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_QuitterActionPerformed
-        new Authentification().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_QuitterActionPerformed
 
     private void boutton_ReclamationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ReclamationsActionPerformed
-        new team.esprit.presentation.GestionDesReclamations().setVisible(true);
+        new GestionDesReclamations().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_ReclamationsActionPerformed
 

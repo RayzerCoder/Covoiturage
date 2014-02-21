@@ -1,17 +1,23 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 import team.esprit.entities.Reclamation;
 
-public class RepondreReclamation extends javax.swing.JFrame {
+public class RepondreUneReclamation extends javax.swing.JFrame {
 
     public void set_tf_Nom(String ch) {
         tf_Nom.setText(ch);
     }
 
-    public RepondreReclamation() {
+    public RepondreUneReclamation() {
         initComponents();
         setTitle("Répondre à une réclamation");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
         this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ta_Message.setLineWrap(true);
         ta_Message.setWrapStyleWord(true);
     }
@@ -117,7 +123,15 @@ public class RepondreReclamation extends javax.swing.JFrame {
         String destinataire = tf_Nom.getText();
         String msg = ta_Message.getText();
         Reclamation reclamation = new Reclamation();
-        reclamation.repondreReclamation(destinataire, msg);
+        GestionDesReclamations gestionDesReclamations = new GestionDesReclamations();
+
+        if (reclamation.repondreReclamation(destinataire, msg) == true) {
+            JOptionPane.showMessageDialog(this, "Votre message a été transmis vers l'adresse: " + destinataire);
+            this.dispose();
+            gestionDesReclamations.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Votre message n'a pas été transmis vers l'adresse: " + destinataire);
+        }
     }//GEN-LAST:event_boutton_EnvoyerActionPerformed
 
     public static void main(String args[]) {
@@ -129,18 +143,18 @@ public class RepondreReclamation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RepondreUneReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RepondreUneReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RepondreUneReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RepondreUneReclamation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RepondreReclamation().setVisible(true);
+                new RepondreUneReclamation().setVisible(true);
             }
         });
     }

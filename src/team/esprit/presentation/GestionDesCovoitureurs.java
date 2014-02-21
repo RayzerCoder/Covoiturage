@@ -1,9 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class GestionDesCovoitureurs extends javax.swing.JFrame {
 
     public GestionDesCovoitureurs() {
+        setTitle("Gestion des Covoitureurs");
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -14,6 +22,7 @@ public class GestionDesCovoitureurs extends javax.swing.JFrame {
         boutton_AfficherLesCovoitureurs = new javax.swing.JButton();
         boutton_RechercheUnCovoitureur = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        boutton_Retour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +50,13 @@ public class GestionDesCovoitureurs extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Gestion des Covoitureurs");
 
+        boutton_Retour.setText("Retour");
+        boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutton_RetourActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,6 +69,10 @@ public class GestionDesCovoitureurs extends javax.swing.JFrame {
                     .addComponent(boutton_AjouterCovoitureur, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boutton_Retour)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,7 +85,9 @@ public class GestionDesCovoitureurs extends javax.swing.JFrame {
                 .addComponent(boutton_AfficherLesCovoitureurs)
                 .addGap(34, 34, 34)
                 .addComponent(boutton_RechercheUnCovoitureur)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(boutton_Retour)
+                .addContainerGap())
         );
 
         pack();
@@ -90,6 +112,12 @@ public class GestionDesCovoitureurs extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_boutton_RechercheUnCovoitureurActionPerformed
 
+    private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
+        Accueil accueil = new Accueil();
+        this.dispose();
+        accueil.setVisible(true);
+    }//GEN-LAST:event_boutton_RetourActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -101,6 +129,7 @@ public class GestionDesCovoitureurs extends javax.swing.JFrame {
     private javax.swing.JButton boutton_AfficherLesCovoitureurs;
     private javax.swing.JButton boutton_AjouterCovoitureur;
     private javax.swing.JButton boutton_RechercheUnCovoitureur;
+    private javax.swing.JButton boutton_Retour;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

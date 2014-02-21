@@ -1,9 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class GestionDesCovoiturages extends javax.swing.JFrame {
 
     public GestionDesCovoiturages() {
         initComponents();
+        setTitle("Gestion des covoiturages");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")

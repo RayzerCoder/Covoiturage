@@ -5,15 +5,15 @@ import team.esprit.entities.Reclamation;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class ReclamationTable extends AbstractTableModel {
+public class GestionDesReclamationsTable extends AbstractTableModel {
 
     List<Reclamation> listReclamations;
     String columnTab[] = {"De la part de", "Réclamation"};
     //String columnTab[] = {"id", "date_envoi", "titre", "type", "message", "id_expediteur"};
 
-    public ReclamationTable() {
+    public GestionDesReclamationsTable() {
         ReclamationDAO reclamationDAO = new ReclamationDAO();
-        listReclamations = reclamationDAO.AfficherReclamations();
+        listReclamations = reclamationDAO.afficherReclamations();
     }
 
     @Override

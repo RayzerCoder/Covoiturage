@@ -1,9 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class RechercherUnCovoiturage extends javax.swing.JFrame {
 
     public RechercherUnCovoiturage() {
         initComponents();
+        setTitle("Rechercher un covoiturage");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -124,7 +132,7 @@ public class RechercherUnCovoiturage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_AfficherCovoiturageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AfficherCovoiturageActionPerformed
-        AfficherCovoiturage afficherUnCovoiturage = new AfficherCovoiturage();
+        AfficherUnCovoiturage afficherUnCovoiturage = new AfficherUnCovoiturage();
         afficherUnCovoiturage.setVisible(false);
     }//GEN-LAST:event_boutton_AfficherCovoiturageActionPerformed
 

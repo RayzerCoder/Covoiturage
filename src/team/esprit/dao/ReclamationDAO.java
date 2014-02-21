@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ReclamationDAO {
 
-    public List<Reclamation> AfficherReclamations() {
+    public List<Reclamation> afficherReclamations() {
         List<Reclamation> listReclamations = new ArrayList<Reclamation>();
         String requete = "SELECT * FROM RECLAMATIONS";
         try {
@@ -18,8 +18,11 @@ public class ReclamationDAO {
             ResultSet resultat = statement.executeQuery(requete);
             while (resultat.next()) {
                 Reclamation reclamation = new Reclamation();
-                reclamation.setMessage(resultat.getString(5));
-                reclamation.setEmail(resultat.getString(7));
+                reclamation.setId(resultat.getInt(1));
+                reclamation.setNomUtilisateur(resultat.getString(2));
+                reclamation.setMessage(resultat.getString(3));
+                reclamation.setEmail(resultat.getString(4));
+                reclamation.setTypeReclamation(resultat.getString(5));
                 listReclamations.add(reclamation);
             }
             return listReclamations;

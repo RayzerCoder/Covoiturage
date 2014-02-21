@@ -11,10 +11,36 @@ import javax.mail.internet.MimeMessage;
 
 public class Reclamation {
 
-    private String _username;
+    private int _id;
+    private String _nomUtilisateur;
     private String _message;
     private String _email;
+    private String _typeReclamation;
+    
+    public void setTypeReclamation(String _typeReclamation) {
+        this._typeReclamation = _typeReclamation;
+    }
 
+    public String getTypeReclamation() {
+        return _typeReclamation;
+    }
+
+    public void setId(int _id) {
+        this._id = _id;
+    }
+
+    public int getId() {
+        return _id;
+    }
+
+    public void setNomUtilisateur(String _nomUtilisateur) {
+        this._nomUtilisateur = _nomUtilisateur;
+    }
+
+    public String getNomUtilisateur() {
+        return _nomUtilisateur;
+    }
+    
     public void setEmail(String _email) {
         this._email = _email;
     }
@@ -23,23 +49,15 @@ public class Reclamation {
         return _email;
     }
 
-    public void setUsername(String _username) {
-        this._username = _username;
-    }
-
     public void setMessage(String _message) {
         this._message = _message;
-    }
-
-    public String getUsername() {
-        return _username;
     }
 
     public String getMessage() {
         return _message;
     }
 
-    public void repondreReclamation(String destinataire, String msg) {
+    public boolean repondreReclamation(String destinataire, String msg) {
         final String username = "covoiturage.1314.3a8@gmail.com";
         final String password = "admincovoiturage";
 
@@ -66,10 +84,10 @@ public class Reclamation {
 
             Transport.send(message);
 
-            System.out.println("Done");
+            return true;
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 }

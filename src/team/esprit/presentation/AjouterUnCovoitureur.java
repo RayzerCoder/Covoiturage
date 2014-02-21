@@ -1,5 +1,9 @@
 package team.esprit.presentation;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
 
@@ -7,6 +11,12 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
 
     public AjouterUnCovoitureur() {
         initComponents();
+        setTitle("Ajouter un Covoitureur");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -18,8 +28,8 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
         label_Login = new javax.swing.JLabel();
         tf_Login = new javax.swing.JTextField();
         label_Login1 = new javax.swing.JLabel();
-        tf_MotDePasse = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        tf_MotDePasse = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,14 +57,20 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
 
         label_Login1.setText("Mot de passe :");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Ajouter un Covoitureur");
+
+        tf_MotDePasse.setText("jPassword");
+        tf_MotDePasse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_MotDePasseMouseClicked(evt);
+            }
+        });
         tf_MotDePasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_MotDePasseActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Ajouter un Covoitureur");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +89,7 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(label_Login1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tf_MotDePasse, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                        .addComponent(tf_MotDePasse)))
                 .addGap(31, 31, 31)
                 .addComponent(boutton_Retour)
                 .addGap(20, 20, 20))
@@ -109,10 +125,6 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_LoginActionPerformed
 
-    private void tf_MotDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_MotDePasseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_MotDePasseActionPerformed
-
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
         GestionDesCovoitureurs gestionDeCovoitueur = new GestionDesCovoitureurs();
         gestionDeCovoitueur.setVisible(true);
@@ -120,16 +132,24 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
     private void boutton_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AjouterActionPerformed
-        // TODO add your handling code here:
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         Covoitureur covoitureur = new Covoitureur();
-        covoitureur.setLogin(tf_Login.getText());
+        covoitureur.setEmail(tf_Login.getText());
         covoitureur.setMdp(tf_MotDePasse.getText());
-        System.out.println("test aff 2 " + covoitureur.getMdp() + covoitureur.getLogin() + tf_MotDePasse.getText());
-        covoitureurDAO.ajouterCovoitureur(covoitureur);
-
-
+        try {
+            covoitureurDAO.ajouterCovoitureur(covoitureur);
+        } catch (SQLException ex) {
+            Logger.getLogger(AjouterUnCovoitureur.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_boutton_AjouterActionPerformed
+
+    private void tf_MotDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_MotDePasseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_MotDePasseActionPerformed
+
+    private void tf_MotDePasseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_MotDePasseMouseClicked
+        tf_MotDePasse.setText("");
+    }//GEN-LAST:event_tf_MotDePasseMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -145,6 +165,6 @@ public class AjouterUnCovoitureur extends javax.swing.JFrame {
     private javax.swing.JLabel label_Login;
     private javax.swing.JLabel label_Login1;
     private javax.swing.JTextField tf_Login;
-    private javax.swing.JTextField tf_MotDePasse;
+    private javax.swing.JPasswordField tf_MotDePasse;
     // End of variables declaration//GEN-END:variables
 }

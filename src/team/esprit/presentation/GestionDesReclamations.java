@@ -1,11 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class GestionDesReclamations extends javax.swing.JFrame {
 
     public GestionDesReclamations() {
         initComponents();
-        setTitle("Gestion des réclamations");
+        this.setTitle("Gestion des réclamations");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
         this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ta_Reclamation.setLineWrap(true);
         ta_Reclamation.setWrapStyleWord(true);
     }
@@ -21,6 +27,7 @@ public class GestionDesReclamations extends javax.swing.JFrame {
         boutton_Repondre = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         table_Reclamation = new javax.swing.JTable();
+        boutton_Retour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,8 +53,15 @@ public class GestionDesReclamations extends javax.swing.JFrame {
             }
         });
 
-        table_Reclamation.setModel(new ReclamationTable());
+        table_Reclamation.setModel(new GestionDesReclamationsTable());
         jScrollPane3.setViewportView(table_Reclamation);
+
+        boutton_Retour.setText("Retour");
+        boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutton_RetourActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,9 +70,11 @@ public class GestionDesReclamations extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(boutton_Lire)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boutton_Lire)
+                    .addComponent(boutton_Retour))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -78,8 +94,14 @@ public class GestionDesReclamations extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(129, 129, 129)
                                 .addComponent(boutton_Lire)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(boutton_Repondre))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(boutton_Repondre))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(boutton_Retour)
+                                .addGap(5, 5, 5))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -95,13 +117,19 @@ public class GestionDesReclamations extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_LireActionPerformed
 
     private void boutton_RepondreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RepondreActionPerformed
-        RepondreReclamation repondreReclamation = new RepondreReclamation();
-        repondreReclamation.setVisible(true);
-        this.setVisible(false);
+        RepondreUneReclamation repondreReclamation = new RepondreUneReclamation();
         int x = table_Reclamation.getSelectedRow();
         int y = table_Reclamation.getSelectedColumn();
         repondreReclamation.set_tf_Nom(table_Reclamation.getValueAt(x, 0).toString());
+        this.dispose();
+        repondreReclamation.setVisible(true);
     }//GEN-LAST:event_boutton_RepondreActionPerformed
+
+    private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
+        Accueil accueil = new Accueil();
+        this.dispose();
+        accueil.setVisible(true);
+    }//GEN-LAST:event_boutton_RetourActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -129,6 +157,7 @@ public class GestionDesReclamations extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutton_Lire;
     private javax.swing.JButton boutton_Repondre;
+    private javax.swing.JButton boutton_Retour;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea ta_Reclamation;

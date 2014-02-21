@@ -1,10 +1,17 @@
 package team.esprit.presentation;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class GenererLesStatistiques extends javax.swing.JFrame {
 
     public GenererLesStatistiques() {
         initComponents();
         setTitle("Générer Statistiques");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
