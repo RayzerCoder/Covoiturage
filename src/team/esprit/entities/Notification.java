@@ -1,13 +1,13 @@
 package team.esprit.entities;
 
-import java.sql.Date;
+import java.sql.Time;
 
 public class Notification {
     
     private int _id;
     private Covoitureur _expediteur;
     private Covoitureur _destinataire;
-    private Date _dateCreation;
+    private Time _dateCreation; //à vérifier timestamp dans la bd.
     private String _contenu;
     private int _type;
 
@@ -23,7 +23,7 @@ public class Notification {
         this._destinataire = _destinataire;
     }
 
-    public void setDateCreation(Date _dateCreation) {
+    public void setDateCreation(Time _dateCreation) {
         this._dateCreation = _dateCreation;
     }
 
@@ -47,7 +47,7 @@ public class Notification {
         return _destinataire;
     }
 
-    public Date getDateCreation() {
+    public Time getDateCreation() {
         return _dateCreation;
     }
 

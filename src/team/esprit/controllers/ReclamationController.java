@@ -1,4 +1,4 @@
-package team.esprit.entities;
+package team.esprit.dao.controllers;
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -9,54 +9,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Reclamation {
-
-    private int _id;
-    private String _email;
-    private String _nomUtilisateur;
-    private String _message;
-    private String _type;
+public class ReclamationController {
     
-    public void setType(String _type) {
-        this._type = _type;
-    }
-
-    public String getType() {
-        return _type;
-    }
-
-    public void setId(int _id) {
-        this._id = _id;
-    }
-
-    public int getId() {
-        return _id;
-    }
-
-    public void setNomUtilisateur(String _nomUtilisateur) {
-        this._nomUtilisateur = _nomUtilisateur;
-    }
-
-    public String getNomUtilisateur() {
-        return _nomUtilisateur;
-    }
-    
-    public void setEmail(String _email) {
-        this._email = _email;
-    }
-
-    public String getEmail() {
-        return _email;
-    }
-
-    public void setMessage(String _message) {
-        this._message = _message;
-    }
-
-    public String getMessage() {
-        return _message;
-    }
-
     public boolean repondreReclamation(String destinataire, String msg) {
         final String username = "covoiturage.1314.3a8@gmail.com";
         final String password = "admincovoiturage";
@@ -90,4 +44,5 @@ public class Reclamation {
             return false;
         }
     }
+    
 }

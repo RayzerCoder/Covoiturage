@@ -16,12 +16,21 @@ public class Covoitureur implements Comparator<Covoitureur> {
     private Date _dateNaissance;
     private Date _dateEnregistrement;
     private int _note; // Somme des champs de la table évaluation
-    private int _etat; // 0: Attente d'activation du mail, 1: Mail Vérifié et Pas bloqué, 2: Est bloqué
+    private int _etat; // 0: Est bloqué , 1: Attente d'activation du mail  2: Mail Vérifié et Pas bloqué,
     private String _avatar; // Un lien vers la photo de profil du Covoitureur
     private String _skype; // Nom d'utilisateur de son compte skype
     private String _facebook; // Nom d'utilisateur de son Facebook ou bien son Lien Facebook
     private Date _dateDerniereVisite;
     private String _cleActivation; // Un cle pour vérifier son mail
+    private String _idFacebook;
+
+    public String getIdFacebook() {
+        return _idFacebook;
+    }
+
+    public void setIdFacebook(String _idFacebook) {
+        this._idFacebook = _idFacebook;
+    }
 
     public void setFumeur(boolean _fumeur) {
         this._fumeur = _fumeur;

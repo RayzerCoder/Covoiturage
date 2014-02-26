@@ -1,6 +1,6 @@
 package team.esprit.entities;
 
-import java.sql.Date;
+import java.sql.Time;
 
 public class Message {
     
@@ -9,7 +9,7 @@ public class Message {
     private Covoitureur _destinataire;
     private String _objet;
     private String _contenu;
-    private Date _dateEnvoie;
+    private Time _dateEnvoie; //a vérifier timestamp dans la bd .. et on en pas besoin seulement fel statistique en cas ou
     private boolean _lu;
 
     public void setId(int _id) {
@@ -32,7 +32,7 @@ public class Message {
         this._contenu = _contenu;
     }
 
-    public void setDateEnvoie(Date _dateEnvoie) {
+    public void setDateEnvoie(Time _dateEnvoie) {
         this._dateEnvoie = _dateEnvoie;
     }
 
@@ -60,7 +60,7 @@ public class Message {
         return _contenu;
     }
 
-    public Date getDateEnvoie() {
+    public Time getDateEnvoie() {
         return _dateEnvoie;
     }
 

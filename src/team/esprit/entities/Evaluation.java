@@ -5,11 +5,11 @@ import java.sql.Date;
 public class Evaluation {
 
     private int _id;
-    private String _message;
+    private String _message; //un petit message avec l'évaluation
     private int _note;
-    private Covoiturage _covoiturage;
-    private Covoitureur _evaluateur;
-    private Date _dateEvaluation;
+    private Covoiturage _covoiturage; //id_covoiturage
+    private Covoitureur _evaluateur; //id_evaluateur
+    private Date _dateEvaluation; //dans la bd DateTime donc à vérifier. je propose String (on récupére le Time et on le convertit avec substring etc..)
 
     public void setId(int _id) {
         this._id = _id;
