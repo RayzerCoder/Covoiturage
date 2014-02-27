@@ -9,7 +9,7 @@ public class MyConnection {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/covoiturage";
     private static final String login = "root";
-    private static final String pwd = "";
+    private static final String pwd = "admin";
     private static Connection con;
 
     private MyConnection() {

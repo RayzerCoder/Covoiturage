@@ -1,12 +1,7 @@
 package team.esprit.dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import team.esprit.entities.Covoitureur;
 import team.esprit.entities.StatCovoitureur;
 import team.esprit.util.MyConnection;
 
@@ -14,7 +9,7 @@ public class StatistiqueDAO {
 
     public void ajouterStatistique(StatCovoitureur statistique) {
 
-        String requete = "insert into statistiques (nom,type,chemin) values (?,?,?)";
+        String requete = "INSERT INTO statistiques (nom, type, chemin) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, statistique.getNom());

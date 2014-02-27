@@ -1,41 +1,40 @@
-package team.esprit.presentation;
-
+package team.esprit.presentationAdministrateur;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
 
 public class FacebookClient extends JFrame {
 
     JButton login;
     JButton getPermissionsForApp;
-    JButton retrieveUser;
     JButton getAccessToken;
+    JButton retrieveInformations;
 
     public FacebookClient() {
+        
+        this.setTitle("Authentification avec Facebook");
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.setSize(400, 250);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         login = new JButton("Login");
-        getPermissionsForApp = new JButton("get permissions for app");
-        retrieveUser = new JButton("retrieve user information");
-        getAccessToken = new JButton("get access_token");
+        getPermissionsForApp = new JButton("Get permission for application");
+        retrieveInformations = new JButton("Retrieve informationst");
+        getAccessToken = new JButton("Get access token");
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 1));
-
         panel.add(login);
         panel.add(getPermissionsForApp);
-        panel.add(retrieveUser);
         panel.add(getAccessToken);
-
+        panel.add(retrieveInformations);
         add(panel);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(100, 125);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        pack();
     }
 
     public void setLoginListener(ActionListener l) {
@@ -47,11 +46,10 @@ public class FacebookClient extends JFrame {
     }
 
     public void setretrieveUserListener(ActionListener l) {
-        retrieveUser.addActionListener(l);
+        retrieveInformations.addActionListener(l);
     }
 
     public void setgetAccessTokenListener(ActionListener l) {
         getAccessToken.addActionListener(l);
     }
-
 }

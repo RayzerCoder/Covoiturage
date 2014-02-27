@@ -5,8 +5,6 @@ import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import chrriis.dj.nativeswing.swtimpl.components.WebBrowserAdapter;
 import chrriis.dj.nativeswing.swtimpl.components.WebBrowserNavigationEvent;
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -15,14 +13,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.parser.ParserDelegator;
-import org.eclipse.swt.widgets.MessageBox;
-import team.esprit.presentation.FacebookClient;
 
 import team.esprit.util.RecupererInfoFacebook;
 
@@ -40,13 +35,10 @@ public class FacebookAuthentification {
             + API_KEY
             + "&redirect_uri=http://www.facebook.com/connect/login_success.html&"
             + "client_secret=" + SECRET + "&code=";
-    public static String access_token = "CAADK7wxuPyUBAG8TAJrvGjosOPPbiyyM4p0oGCZCMQq2ZCLKH6XgEPERwsa0iJYN37bFyTCvp54hGc9aQ08eR7iCMcJ32pxqCrZAV3Ckgw3ehnGlTq5YqoFQrMBb8fAWSyNZBI5vm0gVQt9uPVEYbZCV9vPvJNjW4moFZAjPSKKZCdoUXS4FZCw7";
+    public static String access_token = "              REPLACE                 ";
     public static boolean firstRequestDone = false;
     public static boolean secondRequestDone = false;
 
-    /**
-     * @param args
-     */
     public static void main(final String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -59,7 +51,7 @@ public class FacebookAuthentification {
                 testClient.setLoginListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 1");
+                        System.out.println("Bouton 1");
                         final JFrame loginFrame = new JFrame();
                         JPanel webBrowserPanel = new JPanel(new BorderLayout());
                         // this is the JWebBrowser i mentioned earlier
@@ -104,9 +96,9 @@ public class FacebookAuthentification {
                 testClient.setretrieveUserListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 3");
+                        System.out.println("Bouton 3");
                         try {
-                        RecupererInfoFacebook.main(args);
+                            RecupererInfoFacebook.main(args);
                         } catch (SQLException ex) {
                             Logger.getLogger(FacebookAuthentification.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -115,7 +107,7 @@ public class FacebookAuthentification {
                 testClient.setgetAccessTokenListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 4");
+                        System.out.println("Bouton 4");
                         //JFrame parent = new JFrame();
                         //JOptionPane.showMessageDialog(parent,  access_token);
                         System.out.println("access_token est: " + access_token);
@@ -125,7 +117,7 @@ public class FacebookAuthentification {
                 testClient.setgetPermissionsForAppListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 2");
+                        System.out.println("Bouton 2");
                         final JFrame authFrame = new JFrame();
                         // Create the JWebBrowser and add the WebBrowserAdapter
                         JPanel webBrowserPanel = new JPanel(new BorderLayout());

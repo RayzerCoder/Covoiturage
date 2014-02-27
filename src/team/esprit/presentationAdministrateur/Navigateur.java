@@ -1,31 +1,32 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package team.esprit.presentationAdministrateur;
 
 import chrriis.dj.nativeswing.swtimpl.*;
 import chrriis.dj.nativeswing.swtimpl.components.*;
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import team.esprit.entities.Ville;
 
-/**
- *
- * @author Hhussein
- */
 public class Navigateur extends JFrame {
 
     public Navigateur(String url) {
+        setTitle("Afficher les Covoitureurs");
+        initialise();
         JPanel PanelbrowserJPanel = new JPanel();
         PanelbrowserJPanel.setLayout(new BorderLayout());
         final JWebBrowser navigateur = new JWebBrowser();
         navigateur.navigate(url);
         PanelbrowserJPanel.add(navigateur);
         add(PanelbrowserJPanel);
+    }
+    
+    public void initialise() {
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(final Ville depart, final Ville arrivee) {
@@ -46,13 +47,13 @@ public class Navigateur extends JFrame {
                         + "&path=color:blue|weight:5|geodesic:true|" + depart.getLatitude() + "," + depart.getLongitude()
                         + "|" + arrivee.getLatitude() + "," + arrivee.getLongitude();
 
-
-                Navigateur nav = new Navigateur(link);
-                nav.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                nav.setVisible(true);
-                nav.setSize(700, 700);
+                Navigateur navigateur = new Navigateur(link);
+                navigateur.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                navigateur.setVisible(true);
+                navigateur.setResizable(false);
+                navigateur.pack();
+                navigateur.setSize(700, 700);
             }
         });
-
     }
 }

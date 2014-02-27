@@ -1,32 +1,23 @@
 package team.esprit.presentationAdministrateur;
 
-import java.awt.BorderLayout;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JPanel;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import team.esprit.controlllers.StatCovoitureurController;
-import team.esprit.entities.Covoitureur;
-import team.esprit.dao.CovoitureurDAO;
-import team.esprit.entities.StatCovoitureur;
+import team.esprit.controllers.StatCovoitureurController;
 
 public class StatistiqueCovoitureurs extends javax.swing.JFrame {
 
     public StatistiqueCovoitureurs() {
         initComponents();
         setTitle("Statistiques des Covoitureurs");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -205,8 +196,6 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
         ChartFrame frame = new ChartFrame("test", chart);
         frame.setVisible(true);
         frame.setSize(450, 400);
-
-
     }//GEN-LAST:event_boutton_HommeFemmeActionPerformed
 
     private void boutton_FumeurNonFumeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_FumeurNonFumeurActionPerformed

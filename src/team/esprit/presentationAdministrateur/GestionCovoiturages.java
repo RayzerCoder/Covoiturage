@@ -7,8 +7,11 @@ public class GestionCovoiturages extends javax.swing.JFrame {
     public GestionCovoiturages() {
         initComponents();
         setTitle("Gestion des covoiturages");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

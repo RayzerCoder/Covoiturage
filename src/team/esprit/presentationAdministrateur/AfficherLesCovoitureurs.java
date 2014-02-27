@@ -9,8 +9,11 @@ public class AfficherLesCovoitureurs extends javax.swing.JFrame {
     public AfficherLesCovoitureurs() {
         initComponents();
         setTitle("Afficher les Covoitureurs");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -96,7 +99,6 @@ public class AfficherLesCovoitureurs extends javax.swing.JFrame {
 
         valueAt = "ID:  " + covoitureur.getId()
                 + "\nAddresse E-Mail: " + covoitureur.getEmail()
-                + "\nMot de passe: " + covoitureur.getMdp()
                 + "\nNom d'utilisateur: " + covoitureur.getNomUtilisateur()
                 + "\nNom: " + covoitureur.getNom()
                 + "\nPrénom: " + covoitureur.getPrenom()

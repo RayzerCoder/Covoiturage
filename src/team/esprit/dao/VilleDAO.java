@@ -12,7 +12,7 @@ public class VilleDAO {
 
     public List<Ville> afficheLocalite(String gouvernorat, String delegation) {
         List<Ville> listeVille = new ArrayList<Ville>();
-        String requete = "SELECT localite FROM VILLES WHERE gouvernorat = '" + gouvernorat + "' AND delegation = '" + delegation + "'";
+        String requete = "SELECT localite FROM villes WHERE gouvernorat = '" + gouvernorat + "' AND delegation = '" + delegation + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -20,13 +20,6 @@ public class VilleDAO {
             while (resultat.next()) {
                 Ville ville = new Ville();
                 ville.setLocalite(resultat.getString(1));
-//                ville.setId(resultat.getInt(1));
-//                ville.setCodePostal(resultat.getInt(2));
-//                ville.setGouvernorat(gouvernorat);
-//                ville.setDelegation(resultat.getString(4));
-//                ville.setLocalite(resultat.getString(5));
-//                ville.setLongitude(resultat.getInt(6));
-//                ville.setLatitude(resultat.getInt(7));
                 listeVille.add(ville);
             }
             return listeVille;
@@ -38,7 +31,7 @@ public class VilleDAO {
 
     public List<Ville> afficheDelegation(String gouvernorat) {
         List<Ville> listeVille = new ArrayList<Ville>();
-        String requete = "SELECT DISTINCT delegation FROM VILLES WHERE gouvernorat = '" + gouvernorat + "'";
+        String requete = "SELECT DISTINCT delegation FROM villes WHERE gouvernorat = '" + gouvernorat + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -76,7 +69,7 @@ public class VilleDAO {
 
     public Ville afficheVille_ID(int id) {
 
-        String requete = "SELECT * FROM VILLES WHERE ID = " + id;
+        String requete = "SELECT * FROM villes WHERE id = " + id;
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -100,7 +93,7 @@ public class VilleDAO {
     }
 
     public Ville afficherVille_Localite(String localite) {
-        String requete = "SELECT * FROM VILLES WHERE localite = '" + localite + "'";
+        String requete = "SELECT * FROM villes WHERE localite = '" + localite + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -125,7 +118,7 @@ public class VilleDAO {
 
     public Ville localiserVille_nom(String nom) {
         Ville ville = new Ville();
-        String requete = "SELECT longitude,latitude FROM VILLES where gouvernorat='"
+        String requete = "SELECT longitude,latitude FROM villes WHERE gouvernorat='"
                 + nom + "'";
         try {
             Statement statement = MyConnection.getInstance().createStatement();

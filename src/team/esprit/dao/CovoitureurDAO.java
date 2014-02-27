@@ -18,7 +18,7 @@ public class CovoitureurDAO {
     public Covoitureur afficherCovoitureur_ID(int id) {
 
         Covoitureur covoitureur = new Covoitureur();
-        String requete = "SELECT * FROM Covoitureurs WHERE id = " + id;
+        String requete = "SELECT * FROM covoitureurs WHERE id = " + id;
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -54,7 +54,7 @@ public class CovoitureurDAO {
     public boolean afficherCovoitureur_EMAIL(String email) throws SQLException {
 
         Covoitureur covoitureur = new Covoitureur();
-        String requete = "SELECT * FROM Covoitureurs WHERE email = '" + email + "'";
+        String requete = "SELECT * FROM covoitureurs WHERE email = '" + email + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -94,7 +94,7 @@ public class CovoitureurDAO {
     public Covoitureur afficherCovoitureurEMAIL(String email) {
 
         Covoitureur covoitureur = new Covoitureur();
-        String requete = "SELECT * FROM Covoitureurs WHERE email = '" + email + "'";
+        String requete = "SELECT * FROM covoitureurs WHERE email = '" + email + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -129,7 +129,7 @@ public class CovoitureurDAO {
 
     public List<Covoitureur> afficherCovoitureurs() {
         List<Covoitureur> listCovoitureurs = new ArrayList<Covoitureur>();
-        String requete = "SELECT * FROM Covoitureurs";
+        String requete = "SELECT * FROM covoitureurs";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -165,7 +165,7 @@ public class CovoitureurDAO {
 
     public void ajouterCovoitureur(Covoitureur covoitureur) {
 
-        String requete = "INSERT INTO Covoitureurs (email, mdp) VALUES (?, ?)";
+        String requete = "INSERT INTO covoitureurs (email, mdp) VALUES (?, ?)";
 
         try {
             if (afficherCovoitureur_EMAIL(covoitureur.getEmail()) == false) {
@@ -189,7 +189,7 @@ public class CovoitureurDAO {
     public List<Covoitureur> afficherCovoitureurSexe(char sexe) {
 
         List<Covoitureur> listCovoitureurs = new ArrayList<Covoitureur>();
-        String requete = "SELECT * FROM Covoitureurs WHERE sexe = '" + sexe + "'";
+        String requete = "SELECT * FROM covoitureurs WHERE sexe = '" + sexe + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -226,7 +226,7 @@ public class CovoitureurDAO {
     public List<Covoitureur> afficherCovoitureurEtat(int etat) {
 
         List<Covoitureur> listCovoitureurs = new ArrayList<Covoitureur>();
-        String requete = "SELECT * FROM Covoitureurs WHERE etat = " + etat;
+        String requete = "SELECT * FROM covoitureurs WHERE etat = " + etat;
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -263,7 +263,7 @@ public class CovoitureurDAO {
     public List<Covoitureur> afficherCovoitureurFumeur(boolean fumeur) {
 
         List<Covoitureur> listCovoitureurs = new ArrayList<Covoitureur>();
-        String requete = "SELECT * FROM Covoitureurs WHERE fumeur = " + fumeur;
+        String requete = "SELECT * FROM covoitureurs WHERE fumeur = " + fumeur;
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -300,11 +300,12 @@ public class CovoitureurDAO {
     public boolean authentifierCovoitureur(String email, String mdp) throws SQLException {
 
         Covoitureur covoitureur = new Covoitureur();
-        String requete = "SELECT * FROM COVOITUREURS WHERE EMAIL = '" + email + "' AND MDP = '" + mdp + "'";
+        String requete = "SELECT * FROM covoitureurs WHERE email = '" + email + "' AND mdp = '" + mdp + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
+
             while (resultat.next()) {
                 covoitureur.setId(resultat.getInt(1));
                 covoitureur.setEmail(resultat.getString(2));
@@ -339,11 +340,12 @@ public class CovoitureurDAO {
 
     public boolean authentifierCovoitureurFacebook(String id_facebook) throws SQLException {
         Covoitureur covoitureur = new Covoitureur();
-        String requete = "SELECT * FROM COVOITUREURS WHERE ID_FACEBOOK = '" + id_facebook + "'";
+        String requete = "SELECT * FROM covoitureurs WHERE id_facebook = '" + id_facebook + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
+
             while (resultat.next()) {
                 covoitureur.setId(resultat.getInt(1));
                 covoitureur.setEmail(resultat.getString(2));
@@ -378,7 +380,7 @@ public class CovoitureurDAO {
     public boolean afficherCovoitureur_IDFACEBOOK(String id_facebook) throws SQLException {
 
         Covoitureur covoitureur = new Covoitureur();
-        String requete = "SELECT * FROM COVOITUREURS WHERE ID_FACEBOOK = '" + id_facebook + "'";
+        String requete = "SELECT * FROM covoitureurs WHERE id_facebook = '" + id_facebook + "'";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -435,14 +437,13 @@ public class CovoitureurDAO {
 
     public Map<Integer, Integer> afficherCovoitureurParMois() {
         Map<Integer, Integer> mapCovoitureurParMois = new HashMap<Integer, Integer>();
-        String requete = "SELECT COUNT( * ) , EXTRACT( YEAR_MONTH  FROM date_enregistrement ) AS enregistrer FROM Covoitureurs GROUP BY EXTRACT( YEAR_MONTH  FROM date_enregistrement )";
+        String requete = "SELECT COUNT( * ) , EXTRACT( YEAR_MONTH  FROM date_enregistrement ) AS enregistrer FROM covoitureurs GROUP BY EXTRACT( YEAR_MONTH  FROM date_enregistrement )";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
             while (resultat.next()) {
                 mapCovoitureurParMois.put(resultat.getInt(2), resultat.getInt(1));
-
             }
             return mapCovoitureurParMois;
         } catch (SQLException ex) {
@@ -450,10 +451,11 @@ public class CovoitureurDAO {
             return null;
         }
     }
-       public Map<Integer,Integer> afficherCovoitureurParAn() {
+
+    public Map<Integer, Integer> afficherCovoitureurParAn() {
 
 
-        Map<Integer,Integer> mapCovoitureurParAn = new HashMap<Integer,Integer>();
+        Map<Integer, Integer> mapCovoitureurParAn = new HashMap<Integer, Integer>();
         String requete = "SELECT COUNT( * ) , EXTRACT( YEAR FROM date_enregistrement ) AS enregistrer FROM Covoitureurs GROUP BY EXTRACT( YEAR FROM date_enregistrement )";
 
         try {
@@ -469,16 +471,17 @@ public class CovoitureurDAO {
             return null;
         }
     }
- public List<Covoitureur> rechercherCovoitureur(String critere) {
+
+    public List<Covoitureur> rechercherCovoitureur(String critere) {
 
         List<Covoitureur> listCovoitureurs = new ArrayList<Covoitureur>();
 
-        String requete = " select * from covoitureurs where nom LIKE '%" + critere + "%' or prenom LIKE '%" + critere + "%' or email LIKE '%" + critere + "%' or nom_utilisateur LIKE '%" + critere + "%'";
+        String requete = "SELECT * FROM covoitureurs WHERE nom LIKE '%" + critere + "%' or prenom LIKE '%" + critere + "%' or email LIKE '%" + critere + "%' or nom_utilisateur LIKE '%" + critere + "%'";
         try {
 
             Statement ps = MyConnection.getInstance().createStatement();
-
             ResultSet resultat = ps.executeQuery(requete);
+
             while (resultat.next()) {
                 Covoitureur covoitureur = new Covoitureur();
                 covoitureur.setId(resultat.getInt(1));
@@ -487,7 +490,7 @@ public class CovoitureurDAO {
                 covoitureur.setNomUtilisateur(resultat.getString(4));
                 covoitureur.setNom(resultat.getString(5));
                 covoitureur.setPrenom(resultat.getString(6));
-                //covoitureur.setSexe(resultat.getString(7).charAt(0));
+                covoitureur.setSexe(resultat.getString(7).charAt(0));
                 covoitureur.setFumeur(resultat.getBoolean(8));
                 covoitureur.setDateNaissance(resultat.getDate(9));
                 covoitureur.setDateEnregistrement(resultat.getDate(10));
@@ -498,19 +501,18 @@ public class CovoitureurDAO {
                 covoitureur.setFacebook(resultat.getString(15));
                 covoitureur.setDateDerniereVisite(resultat.getDate(16));
                 covoitureur.setCleActivation(resultat.getString(17));
+                covoitureur.setIdFacebook(resultat.getString(18));
                 listCovoitureurs.add(covoitureur);
             }
             return listCovoitureurs;
-
         } catch (SQLException ex) {
-
             System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
             return null;
         }
     }
- 
-   public void deleteCovoitureur(int id) {
-        String requete = "delete from covoitureurs where id=?";
+
+    public void deleteCovoitureur(int id) {
+        String requete = "delete from covoitureurs whee id = ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
@@ -521,9 +523,9 @@ public class CovoitureurDAO {
             System.out.println("erreur lors de la suppression " + ex.getMessage());
         }
     }
-   
-      public boolean ModifierUnCovoitureur(Covoitureur covoitureur) {
-        String requete = "update covoitureurs set email=?,mdp=?,nom_utilisateur=?,nom=?,prenom=?,sexe=?,fumeur=?,etat=?,avatar=?,skype=? where id=?";
+
+    public boolean modifierCovoitureur(Covoitureur covoitureur) {
+        String requete = "UPDATE covoitureurs SET email = ?, mdp = ?, nom_utilisateur = ? , nom = ? ,prenom = ?, sexe = ?, fumeur = ?, etat = ?, avatar = ?, skype = ? WHERE id = ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, covoitureur.getEmail());
@@ -532,7 +534,6 @@ public class CovoitureurDAO {
             ps.setString(4, covoitureur.getNom());
             ps.setString(5, covoitureur.getPrenom());
             ps.setString(6, "" + covoitureur.getSexe());
-
             ps.setBoolean(7, covoitureur.isFumeur());
             ps.setInt(8, covoitureur.getEtat());
             ps.setString(9, covoitureur.getAvatar());
@@ -542,7 +543,6 @@ public class CovoitureurDAO {
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
-
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
         }
         return true;

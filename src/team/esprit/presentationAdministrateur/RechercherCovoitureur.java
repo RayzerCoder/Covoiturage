@@ -12,8 +12,11 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     public RechercherCovoitureur() {
         initComponents();
         setTitle("Rechercher un Covoitureur");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -31,7 +34,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table_ListCovoitureurs = new javax.swing.JTable();
         boutton_Rechercher = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cb_Critere = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         tf_Critere = new javax.swing.JTextField();
 
@@ -78,15 +81,9 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nom","Prenom","Email","Nom_utilisateur" }));
+        cb_Critere.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nom","Prenom","Email","Nom_utilisateur" }));
 
         jLabel2.setText("Critere :");
-
-        tf_Critere.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_CritereActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,7 +113,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
                                 .addGap(57, 57, 57)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tf_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(42, 42, 42)
@@ -130,7 +127,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_Rechercher)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(tf_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -150,15 +147,9 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_SupprimerUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_SupprimerUnCovoitureurActionPerformed
-
-          CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-          Covoitureur  covoitureur = new Covoitureur() ;
-          int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
-          System.out.println("ligneSelectionne ******"+ligneSelectionne);
-          covoitureurDAO.deleteCovoitureur(ligneSelectionne+1);
-        
-        
-        // TODO add your handling code here:
+        CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
+        int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
+        covoitureurDAO.deleteCovoitureur(ligneSelectionne + 1);
     }//GEN-LAST:event_boutton_SupprimerUnCovoitureurActionPerformed
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
@@ -168,10 +159,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
     private void boutton_AfficherUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AfficherUnCovoitureurActionPerformed
-
-        
-         int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
-        System.out.println("ligneSelectionne ******"+ligneSelectionne);
+        int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         Covoitureur covoitureur;
 
@@ -179,9 +167,8 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
         covoitureur = covoitureurDAO.afficherCovoitureur_ID(id);
         String valueAt = null;
 
-        valueAt  = "ID: " + covoitureur.getId()
-                + "\nAddresse e-Mail: " + covoitureur.getEmail()
-                + "\nMot de passe: " + covoitureur.getMdp()
+        valueAt = "ID: " + covoitureur.getId()
+                + "\nAddresse E-Mail: " + covoitureur.getEmail()
                 + "\nNom d'Uuilisateur: " + covoitureur.getNomUtilisateur()
                 + "\nNom: " + covoitureur.getNom()
                 + "\nPrénom: " + covoitureur.getPrenom()
@@ -195,24 +182,21 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
                 + "\nSkype: " + covoitureur.getSkype()
                 + "\nFacebook: " + covoitureur.getFacebook()
                 + "\nDate de la derniére visite: " + covoitureur.getDateDerniereVisite()
-                + "\nCle activation: " + covoitureur.getCleActivation();
-        
+                + "\nCle activation: " + covoitureur.getCleActivation()
+                + "\nID Facebook: " + covoitureur.getIdFacebook();
+
         AfficherUnCovoitureur1 afficherUnCovoitureur1 = new AfficherUnCovoitureur1(valueAt);
         afficherUnCovoitureur1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_AfficherUnCovoitureurActionPerformed
 
     private void boutton_ModifierUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ModifierUnCovoitureurActionPerformed
-        // TODO add your handling code here:
-       
         int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
-        System.out.println("ligneSelectionne ******"+ligneSelectionne);   
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        Covoitureur  covoitureur = new Covoitureur() ;
+        Covoitureur covoitureur;
         int id = (int) table_ListCovoitureurs.getValueAt(ligneSelectionne, 0);
         covoitureur = covoitureurDAO.afficherCovoitureur_ID(id);
 
-        
         ModifierCovoitureur modifieruncovoitureur = new ModifierCovoitureur(covoitureur);
         modifieruncovoitureur.setVisible(true);
         this.dispose();
@@ -222,20 +206,14 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         List<Covoitureur> listCovoitureurs = new ArrayList<Covoitureur>();
         listCovoitureurs = covoitureurDAO.rechercherCovoitureur(tf_Critere.getText());
-        if (listCovoitureurs.size()<=0) {
-            
-            JOptionPane.showMessageDialog(this, "element vide");
-        }else {
-       
-        table_ListCovoitureurs.setModel(new RechercherCovoitureurTable(tf_Critere.getText()));}
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boutton_RechercherActionPerformed
+        if (listCovoitureurs.size() <= 0) {
 
-    private void tf_CritereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_CritereActionPerformed
-       
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_CritereActionPerformed
+            JOptionPane.showMessageDialog(this, "element vide");
+        } else {
+
+            table_ListCovoitureurs.setModel(new RechercherCovoitureurTable(tf_Critere.getText()));
+        }
+    }//GEN-LAST:event_boutton_RechercherActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -250,7 +228,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     private javax.swing.JButton boutton_Rechercher;
     private javax.swing.JButton boutton_Retour;
     private javax.swing.JButton boutton_SupprimerUnCovoitureur;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cb_Critere;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

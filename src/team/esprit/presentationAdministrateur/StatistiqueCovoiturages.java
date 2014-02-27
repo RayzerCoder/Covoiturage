@@ -7,8 +7,11 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
     public StatistiqueCovoiturages() {
         initComponents();
         setTitle("Statistiques Covoiturages");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,11 +36,6 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         boutton_CovoituragesCrees.setText("Covoiturages Crées");
-        boutton_CovoituragesCrees.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutton_CovoituragesCreesActionPerformed(evt);
-            }
-        });
 
         boutton_CovoiturageParMois.setText("Covoiturages Crées par mois");
 
@@ -46,11 +44,6 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         boutton_CovoiturageParVille.setText("Covoiturage par ville");
 
         boutton_GenererRapport.setText("Générer Rapport");
-        boutton_GenererRapport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutton_GenererRapportActionPerformed(evt);
-            }
-        });
 
         check_Imprimer.setText("Imprimer");
 
@@ -125,19 +118,11 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boutton_CovoituragesCreesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_CovoituragesCreesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boutton_CovoituragesCreesActionPerformed
-
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
         GenererStatistiques genererLesStatistique =new GenererStatistiques();
         genererLesStatistique.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_RetourActionPerformed
-
-    private void boutton_GenererRapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_GenererRapportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boutton_GenererRapportActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

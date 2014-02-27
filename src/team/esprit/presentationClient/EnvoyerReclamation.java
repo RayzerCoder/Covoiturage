@@ -11,12 +11,16 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
     public EnvoyerReclamation() {
         initComponents();
         setTitle("Envoyer une réclamation");
+        initialise();
+        ta_Message.setLineWrap(true);
+        ta_Message.setWrapStyleWord(true);
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ta_Message.setLineWrap(true);
-        ta_Message.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -42,12 +46,6 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
         ta_Message.setRows(5);
         jScrollPane1.setViewportView(ta_Message);
 
-        tf_Email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_EmailActionPerformed(evt);
-            }
-        });
-
         cb_Type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Réclamation de type 1", "Réclamation de type 2", "Réclamation de type 3", "Réclamation de type 4", "Réclamation de type 5", "Réclamation de type 6" }));
 
         boutton_Envoyer.setText("Envoyer");
@@ -57,7 +55,7 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
             }
         });
 
-        boutton_Annuler.setText("Retour");
+        boutton_Annuler.setText("Annuler");
         boutton_Annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutton_AnnulerActionPerformed(evt);
@@ -108,10 +106,6 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_EmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_EmailActionPerformed
 
     private void boutton_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AnnulerActionPerformed
         // TODO add your handling code here:

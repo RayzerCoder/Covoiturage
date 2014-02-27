@@ -7,8 +7,11 @@ public class GestionCovoitureurs extends javax.swing.JFrame {
     public GestionCovoitureurs() {
         setTitle("Gestion des Covoitureurs");
         initComponents();
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -5,28 +5,23 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class AfficherUnCovoitureur extends javax.swing.JFrame {
 
     public AfficherUnCovoitureur() {
-        initComponents();
-        setTitle("Afficher un Covoitureur");
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setResizable(false);
-        this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ta_Covoitureur.setLineWrap(true);
-        ta_Covoitureur.setWrapStyleWord(true);
+        this.dispose();
     }
 
     public AfficherUnCovoitureur(String ch) {
         initComponents();
         setTitle("Afficher un Covoitureur");
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setResizable(false);
-        this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        initialise();
         ta_Covoitureur.setText(ch);
         ta_Covoitureur.setLineWrap(true);
         ta_Covoitureur.setWrapStyleWord(true);
+    }
+    
+    public void initialise() {
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -86,7 +81,7 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AfficherUnCovoitureur().setVisible(true);
+                new AfficherUnCovoitureur().dispose();
             }
         });
     }

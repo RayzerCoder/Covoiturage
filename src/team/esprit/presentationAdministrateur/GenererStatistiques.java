@@ -7,8 +7,11 @@ public class GenererStatistiques extends javax.swing.JFrame {
     public GenererStatistiques() {
         initComponents();
         setTitle("Générer Statistiques");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

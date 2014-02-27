@@ -1,5 +1,4 @@
-
-package team.esprit.controlllers;
+package team.esprit.controllers;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -28,6 +27,7 @@ import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
 
 public class StatCovoitureurController {
+
     public JFreeChart statistiqueCovoitureursActifNonActif() {
         List<Covoitureur> listBloque;
         List<Covoitureur> listAttente;
@@ -55,7 +55,6 @@ public class StatCovoitureurController {
             Integer anneeMois = entry.getKey();
             String annee = anneeMois.toString().substring(0, 4);
             String mois = anneeMois.toString().substring(4);
-            //System.out.println(anneeMois);
             System.out.println(annee);
             System.out.println(mois);
             series.add(new Month(Integer.parseInt(mois), Integer.parseInt(annee)), nbreCovoitureur);
@@ -82,8 +81,7 @@ public class StatCovoitureurController {
         XYItemRenderer renderer = new XYLineAndShapeRenderer(true, false);
         renderer.setSeriesPaint(0, Color.red);
         renderer.setSeriesPaint(1, Color.green);
-        renderer.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_BEVEL));
+        renderer.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
         XYPlot plot = new XYPlot(dataset, domain, range, renderer);
         plot.setBackgroundPaint(Color.lightGray);
         plot.setDomainGridlinePaint(Color.white);
@@ -94,12 +92,11 @@ public class StatCovoitureurController {
         domain.setUpperMargin(0.0);
         domain.setTickLabelsVisible(true);
         range.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        
-        
+
         JFreeChart chart = new JFreeChart("Covoitureurs connéctés en temps réel",
                 new Font("SansSerif", Font.BOLD, 24), plot, true);
         chart.setBackgroundPaint(Color.white);
-        
+
         return chart;
 
     }//A completer
@@ -114,7 +111,6 @@ public class StatCovoitureurController {
             Integer nbreCovoitureur = entry.getValue();
             Integer anneeAnregistrement = entry.getKey();
             series.add(new Year(anneeAnregistrement), nbreCovoitureur);
-
         }
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
@@ -165,6 +161,4 @@ public class StatCovoitureurController {
         JFreeChart chart = ChartFactory.createBarChart("Meilleurs Covoitureur", "Nom", "Note", dataset, PlotOrientation.VERTICAL, true, true, false);
         return chart;
     }
-
-    
 }

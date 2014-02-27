@@ -32,7 +32,7 @@ public class RecupererInfoFacebook {
     private final FacebookClient facebookClient;
 
     public static void main(String[] args) throws SQLException {
-        new RecupererInfoFacebook("CAADK7wxuPyUBAG8TAJrvGjosOPPbiyyM4p0oGCZCMQq2ZCLKH6XgEPERwsa0iJYN37bFyTCvp54hGc9aQ08eR7iCMcJ32pxqCrZAV3Ckgw3ehnGlTq5YqoFQrMBb8fAWSyNZBI5vm0gVQt9uPVEYbZCV9vPvJNjW4moFZAjPSKKZCdoUXS4FZCw7").GetFacebookId();
+        new RecupererInfoFacebook("                 REPLACE                       ").GetFacebookId();
     }
 
     RecupererInfoFacebook(String accessToken) {
@@ -41,40 +41,35 @@ public class RecupererInfoFacebook {
 
 //    void runEverything() {
 //        GetFacebookId();
-////        fetchObjectsAsJsonObject();
-////        fetchObjects();
-////        fetchConnections();
-////        fetchDifferentDataTypesAsJsonObject();
-////        query();
-////        multiquery();
-////        search();
-////        metadata();
-////        paging();
-////        selection();
-////        parameters();
-////        rawJsonResponse();
+//        fetchObjectsAsJsonObject();
+//        fetchObjects();
+//        fetchConnections();
+//        fetchDifferentDataTypesAsJsonObject();
+//        query();
+//        multiquery();
+//        search();
+//        metadata();
+//        paging();
+//        selection();
+//        parameters();
+//        rawJsonResponse();
 //    }
-    
-    
-    String GetFacebookId() throws SQLException {
-        
+    public String GetFacebookId() throws SQLException {
+
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        
+
         User user = facebookClient.fetchObject("me", User.class);
-        
+
         System.out.println(user.getId());
-        
-        if (covoitureurDAO.authentifierCovoitureurFacebook("7") == true) {
+
+        if (covoitureurDAO.authentifierCovoitureurFacebook(user.getId()) == true) {
             System.out.println("good id fb exist");
+            return user.getId();
         } else {
             System.out.println("no facebook id");
+            return user.getId();
         }
-        
-        return ("5");
-//      return user.getId();
-
     }
-
 //        System.out.println("Name: " + user.getName());
 //        System.out.println("Relation: " + user.getRelationshipStatus());
 //        out.println("Username: " + user.getUsername());

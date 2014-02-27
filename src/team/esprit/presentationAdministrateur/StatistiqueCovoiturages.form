@@ -93,9 +93,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Covoiturages Cr&#xe9;es"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_CovoituragesCreesActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boutton_CovoiturageParMois">
       <Properties>
@@ -116,9 +113,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="G&#xe9;n&#xe9;rer Rapport"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_GenererRapportActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="check_Imprimer">
       <Properties>

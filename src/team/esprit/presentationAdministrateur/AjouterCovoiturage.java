@@ -25,7 +25,30 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
     List<Ville> listDelegationsArrivee;
     List<Ville> ListLocalitesArrivee;
 
-    public final void spinnerDateModel() {
+    public AjouterCovoiturage() {
+        initComponents();
+        setTitle("Ajouter un covoiturage");
+        initialise();
+        
+        spinnerDateModel();
+
+        remplirGouvernoratDepart();
+        remplirDelegationDepart();
+        remplirLocaliteDepart();
+
+        remplirGouvernoratArrivee();
+        remplirDelegationArrivee();
+        remplirLocaliteArrivee();
+    }
+    
+    public void initialise() {
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.pack();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    public void spinnerDateModel() {
         SpinnerDateModel model = new SpinnerDateModel();
         model.setCalendarField(Calendar.HOUR);
         model.setCalendarField(Calendar.MINUTE);
@@ -74,27 +97,6 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         for (Ville ville : ListLocalitesArrivee) {
             cb_LocaliteArrivee.addItem(ville.getLocalite());
         }
-    }
-
-    public AjouterCovoiturage() {
-        initComponents();
-        setTitle("Ajouter un covoiturage");
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setResizable(false);
-        this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        spinnerDateModel();
-
-        //Par défaut remplir les ComboBox à partir de la Base de Donnée
-        remplirGouvernoratDepart();
-        remplirDelegationDepart();
-        remplirLocaliteDepart();
-
-        remplirGouvernoratArrivee();
-        remplirDelegationArrivee();
-        remplirLocaliteArrivee();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -163,7 +165,7 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Conducteur:");
+        jLabel5.setText("E-Mail du conducteur:");
 
         tf_Conducteur.setToolTipText("");
 
@@ -213,7 +215,7 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(tf_Conducteur, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -283,8 +285,8 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tf_Conducteur, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -401,6 +403,7 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
 
     private void cb_DelegationDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_DelegationDepartActionPerformed
         cb_LocaliteDepart.removeAllItems();
+        cb_DelegationDepart.removeAllItems();
         remplirDelegationDepart();
         remplirLocaliteDepart();
     }//GEN-LAST:event_cb_DelegationDepartActionPerformed

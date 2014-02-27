@@ -7,8 +7,12 @@ public class Accueil extends javax.swing.JFrame {
     public Accueil() {
         initComponents();
         setTitle("Accueil");
+        initialise();
+        jLabel1.setText(null);
+    }
+
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

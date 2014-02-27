@@ -11,7 +11,7 @@ public class AdministrateurDAO {
     public Administrateur afficherInformations() {
 
         Administrateur administrateur = new Administrateur();
-        String requete = "SELECT * FROM ADMINISTRATEURS ";
+        String requete = "SELECT * FROM administrateurs ";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();

@@ -14,8 +14,11 @@ public class AfficherLesCovoiturages extends javax.swing.JFrame {
     public AfficherLesCovoiturages() {
         initComponents();
         setTitle("Afficher les covoiturages");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -160,7 +163,9 @@ public class AfficherLesCovoiturages extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_AfficherCovoiturageActionPerformed
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        this.setVisible(false);
+        GestionCovoiturages gestionCovoiturages = new GestionCovoiturages(); 
+        this.dispose();
+        gestionCovoiturages.setVisible(true);
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
     public static void main(String args[]) {

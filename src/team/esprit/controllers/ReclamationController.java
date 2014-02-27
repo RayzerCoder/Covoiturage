@@ -1,4 +1,4 @@
-package team.esprit.dao.controllers;
+package team.esprit.controllers;
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -10,7 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class ReclamationController {
-    
+
     public boolean repondreReclamation(String destinataire, String msg) {
         final String username = "covoiturage.1314.3a8@gmail.com";
         final String password = "admincovoiturage";
@@ -22,7 +22,6 @@ public class ReclamationController {
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -44,5 +43,4 @@ public class ReclamationController {
             return false;
         }
     }
-    
 }

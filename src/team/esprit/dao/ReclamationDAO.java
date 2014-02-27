@@ -8,15 +8,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import team.esprit.entities.Covoitureur;
 
 public class ReclamationDAO {
 
     public boolean ajouterReclamation(Covoitureur c, Reclamation reclamation) {
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        Covoitureur covoitureur = covoitureurDAO.afficherCovoitureurEMAIL(c.getEmail());
+        Covoitureur covoitureur = new Covoitureur();
+        
+        try {
+            if (covoitureurDAO.afficherCovoitureur_EMAIL(c.getEmail())) {
+                covoitureur = covoitureurDAO.afficherCovoitureurEMAIL(c.getEmail());
+            }
+            else
+            {
+                covoitureur.setEmail(c.getEmail());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReclamationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        String requete = "INSERT INTO RECLAMATIONS (nom_utilisateur, message, email, type) VALUES (?, ?, ?, ?)";
+        String requete = "INSERT INTO reclamations (nom_utilisateur, message, email, type) VALUES (?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = MyConnection.getInstance().prepareStatement(requete);
@@ -39,7 +53,7 @@ public class ReclamationDAO {
 
     public List<Reclamation> afficherReclamations() {
         List<Reclamation> listReclamations = new ArrayList<Reclamation>();
-        String requete = "SELECT email, type, message FROM RECLAMATIONS";
+        String requete = "SELECT email, type, message FROM reclamations";
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
@@ -48,11 +62,6 @@ public class ReclamationDAO {
                 reclamation.setEmail(resultat.getString(1));
                 reclamation.setType(resultat.getString(2));
                 reclamation.setMessage(resultat.getString(3));
-//                reclamation.setId(resultat.getInt(1));
-//                reclamation.setNomUtilisateur(resultat.getString(2));
-//                reclamation.setMessage(resultat.getString(3));
-//                reclamation.setEmail(resultat.getString(4));
-//                reclamation.setType(resultat.getString(5));
                 listReclamations.add(reclamation);
             }
             return listReclamations;

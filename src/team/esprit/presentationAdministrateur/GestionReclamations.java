@@ -1,16 +1,21 @@
 package team.esprit.presentationAdministrateur;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class GestionReclamations extends javax.swing.JFrame {
 
     public GestionReclamations() {
         initComponents();
-        this.setTitle("Gestion des réclamations");
+        initialise();
+        ta_Reclamation.setLineWrap(true);
+        ta_Reclamation.setWrapStyleWord(true);
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ta_Reclamation.setLineWrap(true);
-        ta_Reclamation.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +32,7 @@ public class GestionReclamations extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        table_Reclamation.setModel(new GestionReclamationsTable());
+        table_Reclamation.setModel(new team.esprit.presentationAdministrateur.GestionReclamationsTable());
         jScrollPane1.setViewportView(table_Reclamation);
 
         ta_Reclamation.setEditable(false);

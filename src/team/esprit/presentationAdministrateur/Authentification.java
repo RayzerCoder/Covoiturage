@@ -10,8 +10,11 @@ public class Authentification extends javax.swing.JFrame {
     public Authentification() {
         initComponents();
         setTitle("Authentification");
+        initialise();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,12 +36,6 @@ public class Authentification extends javax.swing.JFrame {
         jLabel1.setText("Login");
 
         jLabel2.setText("Mot de passe");
-
-        tf_Login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_LoginActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Authentification");
@@ -102,10 +99,6 @@ public class Authentification extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_LoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_LoginActionPerformed
 
     private void boutton_AuthentifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AuthentifierActionPerformed
         AdministrateurDAO administrateurDAO = new AdministrateurDAO();

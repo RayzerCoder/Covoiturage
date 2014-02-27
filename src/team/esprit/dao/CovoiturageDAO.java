@@ -16,7 +16,7 @@ public class CovoiturageDAO {
         VilleDAO villeDAO = new VilleDAO();
         DetourDAO detourDAO = new DetourDAO();
         ParticipantDAO participantDAO = new ParticipantDAO();
-        String requete = "SELECT * FROM Covoiturages WHERE id = " + id;
+        String requete = "SELECT * FROM covoiturages WHERE id = " + id;
         Covoiturage covoiturage = new Covoiturage();
 
         try {
@@ -56,7 +56,7 @@ public class CovoiturageDAO {
         ParticipantDAO participantDAO = new ParticipantDAO();
 
         List<Covoiturage> listCovoiturages = new ArrayList<Covoiturage>();
-        String requete = "SELECT * FROM Covoiturages";
+        String requete = "SELECT * FROM covoiturages";
 
         try {
             Statement statement = MyConnection.getInstance().createStatement();
@@ -91,12 +91,10 @@ public class CovoiturageDAO {
 
     public boolean ajouterCovoiturage(Covoiturage covoiturage) {
 
-        String requete = "INSERT INTO covoiturages (id_ville_depart, id_ville_arrivee, id_createur, date_depart, heure_depart, "
-                + "nombre_places, prix, fumeur, reservee_femmes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String requete = "INSERT INTO covoiturages (id_ville_depart, id_ville_arrivee, id_createur, date_depart, heure_depart, nombre_places, prix, fumeur, reservee_femmes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-
             ps.setInt(1, covoiturage.getVilleDepart().getId());
             ps.setInt(2, covoiturage.getVilleArrivee().getId());
             ps.setInt(3, covoiturage.getCreateur().getId());
@@ -106,7 +104,6 @@ public class CovoiturageDAO {
             ps.setFloat(7, covoiturage.getPrix());
             ps.setBoolean(8, covoiturage.isFumeur());
             ps.setBoolean(9, covoiturage.isReserveeFemmes());
-
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès.");
             return true;

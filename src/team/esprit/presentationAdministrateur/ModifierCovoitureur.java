@@ -9,24 +9,25 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
     Covoitureur covoitureur;
 
     public ModifierCovoitureur() {
-        initComponents();
-        setTitle("Modifier un Covoitureur");
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setResizable(false);
-        this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.dispose();
     }
 
     public ModifierCovoitureur(Covoitureur covoitureur) {
         initComponents();
         setTitle("Modifier un Covoitureur");
+        initialise();
+        this.covoitureur = covoitureur;
+        initialiserComposants();
+    }
+    
+    public void initialise() {
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.covoitureur = covoitureur;
+    }
+    
+    public void initialiserComposants() {
         tf_Nom.setText(covoitureur.getNom());
         tf_Prenom.setText(covoitureur.getPrenom());
         tf_Email.setText(covoitureur.getEmail());
@@ -36,6 +37,17 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
         tf_Skype.setText(covoitureur.getSkype());
         tf_NomUtilisateur.setText(covoitureur.getNomUtilisateur());
         tf_Mdp.setText(covoitureur.getMdp());
+        jX_date.setDate(covoitureur.getDateNaissance());
+        if (covoitureur.isFumeur() == true) {
+            rb_Oui.setSelected(true);
+        } else {
+            rb_Non.setSelected(true);
+        }
+        if (covoitureur.getSexe() == 'H') {
+            rb_Homme.setSelected(true);
+        } else {
+            rb_Femme.setSelected(true);
+        }
         jX_date.setDate(covoitureur.getDateNaissance());
     }
 
@@ -82,13 +94,13 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
 
         jLabel3.setText("Mot de passe:");
 
-        jLabel4.setText("Nom Utlisateur :");
+        jLabel4.setText("Nom Utlisateur:");
 
-        jLabel5.setText("Nom :");
+        jLabel5.setText("Nom:");
 
-        jLabel6.setText("Prenom :");
+        jLabel6.setText("Prenom:");
 
-        jLabel7.setText("Sexe :");
+        jLabel7.setText("Sexe:");
 
         jLabel9.setText("Skype :");
 
@@ -115,12 +127,16 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rb_Homme);
         rb_Homme.setText("Homme");
 
+        buttonGroup1.add(rb_Femme);
         rb_Femme.setText("Femme");
 
-        rb_Oui.setText("oui");
+        buttonGroup2.add(rb_Oui);
+        rb_Oui.setText("Oui");
 
+        buttonGroup2.add(rb_Non);
         rb_Non.setText("Non");
 
         jButton1.setText("Retour");
@@ -143,7 +159,7 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Etat :");
+        jLabel8.setText("Etat:");
 
         jX_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,47 +173,48 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rb_Homme)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel6)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(34, 34, 34))
-                                .addComponent(jLabel8))
-                            .addGap(73, 73, 73)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tf_Nom)
-                                .addComponent(tf_Prenom)
-                                .addComponent(tf_NomUtilisateur)
-                                .addComponent(tf_Mdp)
-                                .addComponent(tf_Email, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                .addComponent(tf_Etat)))
-                        .addComponent(jLabel15))
-                    .addComponent(rb_Femme))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_Nom)
+                            .addComponent(tf_Prenom)
+                            .addComponent(tf_NomUtilisateur)
+                            .addComponent(tf_Mdp)
+                            .addComponent(tf_Email, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(tf_Etat)))
+                    .addComponent(jLabel15)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rb_Homme)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rb_Femme)
+                                .addGap(2, 2, 2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addComponent(jLabel13)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel12))
-                                .addGap(103, 103, 103)
-                                .addComponent(jLabel13)
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rb_Non)
-                                    .addComponent(rb_Oui)))
-                            .addComponent(jLabel14)))
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel14))
+                        .addGap(203, 203, 203))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_Non)
+                            .addComponent(rb_Oui))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -208,8 +225,8 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
                                 .addComponent(tf_Avatar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                                 .addComponent(tf_Skype, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(tf_Facebook, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jX_date, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(jX_date, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,6 +267,22 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
                             .addComponent(tf_Facebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jX_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1)
+                                    .addComponent(boutton_Modifer)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
@@ -258,43 +291,58 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(tf_Prenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tf_Etat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addGap(58, 58, 58))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(jX_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(rb_Oui))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rb_Non)))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(boutton_Modifer)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rb_Femme)
-                            .addComponent(jLabel7))
-                        .addGap(5, 5, 5)
-                        .addComponent(rb_Homme)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(106, 106, 106)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rb_Femme)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rb_Homme))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rb_Oui)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rb_Non)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_ModiferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ModiferActionPerformed
+        covoitureur.setEmail(tf_Email.getText());
+        covoitureur.setMdp(tf_Mdp.getText());
+        covoitureur.setNomUtilisateur(tf_NomUtilisateur.getText());
+        covoitureur.setNom(tf_Nom.getText());
+        covoitureur.setPrenom(tf_Prenom.getText());
+        covoitureur.setEtat(Integer.parseInt(tf_Etat.getText()));
+        if (rb_Homme.isSelected())  {
+            covoitureur.setSexe('H');
+        }
+        else{
+            covoitureur.setSexe('F');
+        }
+        covoitureur.setAvatar(tf_Avatar.getText());
+        covoitureur.setSkype(tf_Skype.getText());
+        covoitureur.setFacebook(tf_Facebook.getText());
+        java.util.Date dateNaissanceUTIL = jX_date.getDate();
+        java.sql.Date dateNaissanceSQL = new java.sql.Date(dateNaissanceUTIL.getTime());
+        covoitureur.setDateNaissance(dateNaissanceSQL);
+        
+        if ( rb_Oui.isSelected()){
+            covoitureur.setFumeur(true);
+        }
+        else {
+            covoitureur.setFumeur(false);
+        }
+        
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        System.out.println("TESt aff MAJ : " + covoitureurDAO.ModifierUnCovoitureur(covoitureur));
+        covoitureurDAO.modifierCovoitureur(covoitureur);
     }//GEN-LAST:event_boutton_ModiferActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -318,7 +366,6 @@ public class ModifierCovoitureur extends javax.swing.JFrame {
     private void jX_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jX_dateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jX_dateActionPerformed
-
 
     public static void main(String args[]) {
         try {
