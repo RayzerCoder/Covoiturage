@@ -128,7 +128,6 @@ public class CreerUnCovoiturage extends javax.swing.JFrame {
         cb_GouvernoratDepart = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cb_DelegationDepart = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         cb_LocaliteDepart = new javax.swing.JComboBox();
         cb_LocaliteArrivee = new javax.swing.JComboBox();
@@ -150,6 +149,7 @@ public class CreerUnCovoiturage extends javax.swing.JFrame {
         sp_NombrePlaces = new javax.swing.JSpinner();
         chb_Fumeur = new javax.swing.JCheckBox();
         chb_Reserve = new javax.swing.JCheckBox();
+        cb_DelegationDepart = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,12 +171,6 @@ public class CreerUnCovoiturage extends javax.swing.JFrame {
         jLabel1.setText("Allant de:");
 
         jLabel2.setText("Délégation:");
-
-        cb_DelegationDepart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_DelegationDepartActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("Localite:");
 
@@ -232,6 +226,12 @@ public class CreerUnCovoiturage extends javax.swing.JFrame {
         chb_Fumeur.setText("Fumeur");
 
         chb_Reserve.setText("Réservé aux femmes");
+
+        cb_DelegationDepart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_DelegationDepartActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -377,13 +377,6 @@ public class CreerUnCovoiturage extends javax.swing.JFrame {
         remplirLocaliteDepart();
     }//GEN-LAST:event_cb_GouvernoratDepartActionPerformed
 
-    private void cb_DelegationDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_DelegationDepartActionPerformed
-        cb_LocaliteDepart.removeAllItems();
-        cb_DelegationDepart.removeAllItems();
-        remplirDelegationDepart();
-        remplirLocaliteDepart();
-    }//GEN-LAST:event_cb_DelegationDepartActionPerformed
-
     private void cb_DelegationArriveeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_DelegationArriveeActionPerformed
         cb_LocaliteArrivee.removeAllItems();
         remplirDelegationArrivee();
@@ -463,6 +456,12 @@ public class CreerUnCovoiturage extends javax.swing.JFrame {
         remplirDelegationArrivee();
         remplirLocaliteArrivee();
     }//GEN-LAST:event_cb_GouvernoratArriveeActionPerformed
+
+    private void cb_DelegationDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_DelegationDepartActionPerformed
+        cb_LocaliteDepart.removeAllItems();
+        remplirDelegationDepart();
+        remplirLocaliteDepart();
+    }//GEN-LAST:event_cb_DelegationDepartActionPerformed
 
     /**
      * @param args the command line arguments

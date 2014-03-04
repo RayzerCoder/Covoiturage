@@ -264,7 +264,7 @@ public class Authentification extends javax.swing.JFrame {
                         CreerUnCovoiturage creerUnCovoiturage = new CreerUnCovoiturage(covoitureurConnecte);
                         AfficherLesReservations afficherLesReservations = new AfficherLesReservations();
                         afficherLesReservations.setVisible(true);
-                        //creerUnCovoiturage.setVisible(true);
+                        creerUnCovoiturage.setVisible(true);
                         //consulterMesMessages.setVisible(true);
                         //accueilClient.setVisible(true);
                     }
