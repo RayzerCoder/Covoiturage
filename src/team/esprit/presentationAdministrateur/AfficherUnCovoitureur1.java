@@ -6,15 +6,14 @@ public class AfficherUnCovoitureur1 extends javax.swing.JFrame {
 
     public AfficherUnCovoitureur1() {
         this.dispose();
+        initialise();
     }
 
-    public AfficherUnCovoitureur1(String ch) {
+    public AfficherUnCovoitureur1(String informations) {
         initComponents();
         setTitle("Afficher un Covoitureur");
         initialise();
-        ta_Covoitureur.setText(ch);
-        ta_Covoitureur.setLineWrap(true);
-        ta_Covoitureur.setWrapStyleWord(true);
+        ta_Covoitureur.setText(informations);
     }
     
     public void initialise() {
@@ -22,6 +21,8 @@ public class AfficherUnCovoitureur1 extends javax.swing.JFrame {
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ta_Covoitureur.setLineWrap(true);
+        ta_Covoitureur.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")

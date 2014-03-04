@@ -92,7 +92,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cb_DelegationArrivee" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cb_DelegationDepart" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cb_DelegationDepart" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -205,11 +205,6 @@
         <Property name="text" type="java.lang.String" value="D&#xe9;l&#xe9;gation:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cb_DelegationDepart">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_DelegationDepartActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vers: "/>
@@ -265,6 +260,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tf_Prix">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chb_Fumeur">
       <Properties>
@@ -314,6 +312,11 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_LocaliserActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cb_DelegationDepart">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_DelegationDepartActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

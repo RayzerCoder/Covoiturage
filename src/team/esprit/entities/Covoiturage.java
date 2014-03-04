@@ -21,6 +21,15 @@ public class Covoiturage {
     private boolean _reserveeFemmes;
     private List<Ville> _detours; //Table détours
     private List<Covoitureur> _participants; //Table participants
+    private List<Covoitureur> _reservateurs; //Table réservations
+
+    public void setReservateurs(List<Covoitureur> _reservateurs) {
+        this._reservateurs = _reservateurs;
+    }
+
+    public List<Covoitureur> getReservateurs() {
+        return _reservateurs;
+    }    
 
     public int getId() {
         return _id;
@@ -148,5 +157,10 @@ public class Covoiturage {
 
     public void setParticipants(List<Covoitureur> _participants) {
         this._participants = _participants;
+    }
+
+    @Override
+    public String toString() {
+        return "Covoiturage{" + "_id=" + _id + ", _titre=" + _titre + ", _description=" + _description + ", _villeDepart=" + _villeDepart + ", _villeArrivee=" + _villeArrivee + ", _createur=" + _createur + ", _dateCreation=" + _dateCreation + ", _dateMiseAJour=" + _dateMiseAJour + ", _dateDepart=" + _dateDepart + ", _HeureDepart=" + _HeureDepart + ", _nombrePlaces=" + _nombrePlaces + ", _prix=" + _prix + ", _fumeur=" + _fumeur + ", _reserveeFemmes=" + _reserveeFemmes + ", _detours=" + _detours + ", _participants=" + _participants + ", _reservateurs=" + _reservateurs + '}';
     }
 }

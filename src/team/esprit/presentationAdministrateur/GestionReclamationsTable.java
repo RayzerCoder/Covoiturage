@@ -8,7 +8,7 @@ import java.util.List;
 public class GestionReclamationsTable extends AbstractTableModel {
 
     List<Reclamation> listReclamations;
-    String columnTab[] = {"De la part de", "Type de réclamation", "Message"};
+    String columnTab[] = {"ID", "De la part de", "Type de réclamation", "Vu", "Message"};
 
     public GestionReclamationsTable() {
         ReclamationDAO reclamationDAO = new ReclamationDAO();
@@ -34,10 +34,14 @@ public class GestionReclamationsTable extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return listReclamations.get(rowIndex).getEmail();
+                return listReclamations.get(rowIndex).getId();
             case 1:
-                return listReclamations.get(rowIndex).getType();
+                return listReclamations.get(rowIndex).getEmail();
             case 2:
+                return listReclamations.get(rowIndex).getType();
+            case 3:
+                return listReclamations.get(rowIndex).isVu();
+            case 4:
                 return listReclamations.get(rowIndex).getMessage();
             default:
                 return null;

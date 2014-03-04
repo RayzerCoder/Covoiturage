@@ -28,26 +28,27 @@ import team.esprit.entities.Covoitureur;
 
 public class StatCovoitureurController {
 
-    public JFreeChart statistiqueCovoitureursActifNonActif() {
-        List<Covoitureur> listBloque;
-        List<Covoitureur> listAttente;
-        List<Covoitureur> listActif;
+    public JFreeChart statistiqueCovoitureursEtats() {
+        List<Covoitureur> listBloques;
+        List<Covoitureur> listAttentes;
+        List<Covoitureur> listActifs;
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        listBloque = covoitureurDAO.afficherCovoitureurEtat(0);
-        listActif = covoitureurDAO.afficherCovoitureurEtat(1);
-        listAttente = covoitureurDAO.afficherCovoitureurEtat(2);
+        listBloques = covoitureurDAO.afficherCovoitureurEtat(0);
+        listActifs = covoitureurDAO.afficherCovoitureurEtat(1);
+        listAttentes = covoitureurDAO.afficherCovoitureurEtat(2);
+        
         DefaultPieDataset pieDataset = new DefaultPieDataset();
-        pieDataset.setValue("Bloqué", listActif.size() + 1);
-        pieDataset.setValue("Actif", listActif.size() + 1);
-        pieDataset.setValue("En Attente", listActif.size() + 1);
-        JFreeChart chart = ChartFactory.createPieChart("Actif / Non Actif", pieDataset, true, true, false);
+        pieDataset.setValue("Bloqués", listActifs.size() + 1);
+        pieDataset.setValue("Actifs", listActifs.size() + 1);
+        pieDataset.setValue("En Attentes", listActifs.size() + 1);
+        JFreeChart chart = ChartFactory.createPieChart3D("Covoitureurs : Bloqués / En attente / Actifs", pieDataset, true, true, false);
         return chart;
     }
 
-    public JFreeChart statistiqueCovoitureursInscritParMois() {
+    public JFreeChart statistiqueCovoitureursInscritsMois() {
         Map<Integer, Integer> mapCovoitureurParMois = new HashMap<Integer, Integer>();
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        mapCovoitureurParMois = covoitureurDAO.afficherCovoitureurParMois();
+        mapCovoitureurParMois = covoitureurDAO.afficherCovoitureurMois();
 
         TimeSeries series = new TimeSeries("Inscrits par Mois", Month.class);
         for (Map.Entry<Integer, Integer> entry : mapCovoitureurParMois.entrySet()) {
@@ -55,25 +56,21 @@ public class StatCovoitureurController {
             Integer anneeMois = entry.getKey();
             String annee = anneeMois.toString().substring(0, 4);
             String mois = anneeMois.toString().substring(4);
-            System.out.println(annee);
-            System.out.println(mois);
             series.add(new Month(Integer.parseInt(mois), Integer.parseInt(annee)), nbreCovoitureur);
-
         }
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
-
-        JFreeChart chart = ChartFactory.createTimeSeriesChart("Nombre Inscrits par Mois", " Mois ", "Nombre Inscrits", dataset, true, true, true);
+        JFreeChart chart = ChartFactory.createTimeSeriesChart("Nombre de Covoitureurs inscrits par Mois", "Mois", "Nombre de Covoitureurs inscrits", dataset, true, true, true);
         return chart;
     }
 
     public JFreeChart statistiqueCovoitureursConnectes() {
-        TimeSeries time = new TimeSeries("time", Second.class);
+        TimeSeries time = new TimeSeries("Covoitureurs Connectés", Second.class);
         time.setMaximumItemAge(2000);
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(time);
         DateAxis domain = new DateAxis("Time");
-        NumberAxis range = new NumberAxis("connéctés");
+        NumberAxis range = new NumberAxis("Connectés");
         domain.setTickLabelFont(new Font("SansSerif", Font.PLAIN, 12));
         range.setTickLabelFont(new Font("SansSerif", Font.PLAIN, 12));
         domain.setLabelFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -92,19 +89,16 @@ public class StatCovoitureurController {
         domain.setUpperMargin(0.0);
         domain.setTickLabelsVisible(true);
         range.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-
         JFreeChart chart = new JFreeChart("Covoitureurs connéctés en temps réel",
                 new Font("SansSerif", Font.BOLD, 24), plot, true);
         chart.setBackgroundPaint(Color.white);
-
         return chart;
-
     }//A completer
 
     public JFreeChart statistiqueCovoitureursInscritParAn() {
         Map<Integer, Integer> mapCovoitureurParAn = new HashMap<Integer, Integer>();
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        mapCovoitureurParAn = covoitureurDAO.afficherCovoitureurParAn();
+        mapCovoitureurParAn = covoitureurDAO.afficherCovoitureurAnnee();
 
         TimeSeries series = new TimeSeries("Inscrits par Ans", Year.class);
         for (Map.Entry<Integer, Integer> entry : mapCovoitureurParAn.entrySet()) {
@@ -128,7 +122,7 @@ public class StatCovoitureurController {
         DefaultPieDataset pieDataset = new DefaultPieDataset();
         pieDataset.setValue("Femme", listFemme.size() + 1);
         pieDataset.setValue("Homme", ListHomme.size() + 1);
-        JFreeChart chart = ChartFactory.createPieChart("Homme / Femme", pieDataset, true, true, false);
+        JFreeChart chart = ChartFactory.createPieChart3D("Homme / Femme", pieDataset, true, true, false);
         return chart;
     }
 
@@ -141,7 +135,7 @@ public class StatCovoitureurController {
         DefaultPieDataset pieDataset = new DefaultPieDataset();
         pieDataset.setValue("Fumeur", listFumeur.size() + 1);
         pieDataset.setValue("Non Fumeur", listNonFumeur.size() + 1);
-        JFreeChart chart = ChartFactory.createPieChart("Fumeur / Non Fumeur", pieDataset, true, true, false);
+        JFreeChart chart = ChartFactory.createPieChart3D("Fumeur / Non Fumeur", pieDataset, true, true, false);
         return chart;
     }
 
@@ -150,15 +144,12 @@ public class StatCovoitureurController {
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         List<Covoitureur> listCovoitureurs = covoitureurDAO.afficherCovoitureurs();
         Collections.sort(listCovoitureurs, new Covoitureur());
-        List<Covoitureur> resultatCovoitureurs = null;
+        List<Covoitureur> resultatCovoitureurs;
         resultatCovoitureurs = listCovoitureurs.subList(0, 10);
         for (Covoitureur covoitureur : resultatCovoitureurs) {
-            System.out.println(covoitureur);
+            dataset.setValue(covoitureur.getNote(), "Note", String.valueOf(covoitureur.getId()));
         }
-        for (Covoitureur covoitureur : resultatCovoitureurs) {
-            dataset.setValue(covoitureur.getNote(), "Note", covoitureur.getNom());
-        }
-        JFreeChart chart = ChartFactory.createBarChart("Meilleurs Covoitureur", "Nom", "Note", dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart chart = ChartFactory.createBarChart3D("Meilleurs Covoitureurs", "ID Covoitureur", "Note", dataset, PlotOrientation.VERTICAL, true, true, false);
         return chart;
     }
 }

@@ -1,5 +1,9 @@
 package team.esprit.presentationAdministrateur;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -29,16 +33,6 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         initComponents();
         setTitle("Ajouter un covoiturage");
         initialise();
-        
-        spinnerDateModel();
-
-        remplirGouvernoratDepart();
-        remplirDelegationDepart();
-        remplirLocaliteDepart();
-
-        remplirGouvernoratArrivee();
-        remplirDelegationArrivee();
-        remplirLocaliteArrivee();
     }
     
     public void initialise() {
@@ -46,8 +40,15 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        spinnerDateModel();
+        remplirGouvernoratDepart();
+        remplirDelegationDepart();
+        remplirLocaliteDepart();
+        remplirGouvernoratArrivee();
+        remplirDelegationArrivee();
+        remplirLocaliteArrivee();
     }
-    
+
     public void spinnerDateModel() {
         SpinnerDateModel model = new SpinnerDateModel();
         model.setCalendarField(Calendar.HOUR);
@@ -58,7 +59,7 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
     }
 
     public void remplirGouvernoratDepart() {
-        listGouvernoratsDepart = villeDAO.afficheVilles();
+        listGouvernoratsDepart = villeDAO.afficheGouvernorat();
         for (Ville ville : listGouvernoratsDepart) {
             cb_GouvernoratDepart.addItem(ville.getGouvernorat());
         }
@@ -79,7 +80,7 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
     }
 
     public void remplirGouvernoratArrivee() {
-        listGouvernoratsArrivee = villeDAO.afficheVilles();
+        listGouvernoratsArrivee = villeDAO.afficheGouvernorat();
         for (Ville ville : listGouvernoratsArrivee) {
             cb_GouvernoratArrivee.addItem(ville.getGouvernorat());
         }
@@ -106,7 +107,6 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cb_GouvernoratDepart = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        cb_DelegationDepart = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         cb_GouvernoratArrivee = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
@@ -130,6 +130,7 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         sp_HeureDepart = new javax.swing.JSpinner();
         boutton_Retour = new javax.swing.JButton();
         boutton_Localiser = new javax.swing.JButton();
+        cb_DelegationDepart = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,12 +143,6 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Délégation:");
-
-        cb_DelegationDepart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_DelegationDepartActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Vers: ");
 
@@ -177,6 +172,8 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
 
         jLabel10.setText("Prix:");
 
+        tf_Prix.setText("0");
+
         chb_Fumeur.setText("Fumeur");
 
         chb_Reserve.setText("Réservé aux femmes");
@@ -203,6 +200,12 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         boutton_Localiser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutton_LocaliserActionPerformed(evt);
+            }
+        });
+
+        cb_DelegationDepart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_DelegationDepartActionPerformed(evt);
             }
         });
 
@@ -341,35 +344,49 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
 
     private void boutton_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AjouterActionPerformed
         Covoiturage covoiturage = new Covoiturage();
-
         Covoitureur covoitureur = covoitureurDAO.afficherCovoitureurEMAIL(tf_Conducteur.getText());
         covoiturage.setCreateur(covoitureur);
-
         Ville villeDepart = villeDAO.afficherVille_Localite(cb_LocaliteDepart.getSelectedItem().toString());
         covoiturage.setVilleDepart(villeDepart);
-
         Ville villeArrivee = villeDAO.afficherVille_Localite(cb_LocaliteArrivee.getSelectedItem().toString());
         covoiturage.setVilleArrivee(villeArrivee);
-
-        java.util.Date dateDepartUTIL = dp_Date.getDate();
-        java.sql.Date dateDepartSQL = new java.sql.Date(dateDepartUTIL.getTime());
-        covoiturage.setDateDepart(dateDepartSQL);
-
-        String time1 = sp_HeureDepart.getValue().toString();
-        System.out.println(time1);
-        time1 = time1.substring(11, 20);
-        System.out.println(time1);
-        covoiturage.setHeureDepart(time1);
-
+        try {
+            java.util.Date dateDepartUTIL = dp_Date.getDate();
+            java.sql.Date dateDepartSQL = new java.sql.Date(dateDepartUTIL.getTime());
+            covoiturage.setDateDepart(dateDepartSQL);
+        } catch (NullPointerException e) {
+            e.getMessage();
+        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String systemDate = dateFormat.format(date);
+        String heureDepart = sp_HeureDepart.getValue().toString();
+        heureDepart = heureDepart.substring(11, 20);
+        covoiturage.setHeureDepart(heureDepart);
         covoiturage.setNombrePlaces((int) sp_NombrePlaces.getValue());
         covoiturage.setPrix((Float.parseFloat(tf_Prix.getText())));
         covoiturage.setFumeur(chb_Fumeur.isSelected());
         covoiturage.setReserveeFemmes(chb_Reserve.isSelected());
-
-        if (covoiturageDAO.ajouterCovoiturage(covoiturage)) {
-            JOptionPane.showMessageDialog(this, "Le covoiturage a été ajouté avec succés !");
-        } else {
-            JOptionPane.showMessageDialog(this, "Le covoiturage n'a pas été ajouté !");
+        try {
+            try {
+                if ((tf_Conducteur.getText().equals("")) && (tf_Prix.getText().equals("")) 
+                        && ((int) sp_NombrePlaces.getValue() != 0)) {
+                    if (dp_Date.getDate().before((dateFormat.parse(systemDate)))) {
+                        JOptionPane.showMessageDialog(this, "La date du covoiturage est dépassé.");
+                    } else if (dp_Date.getDate().after((dateFormat.parse(systemDate))) || dp_Date.getDate().equals(dateFormat.parse(systemDate))) {
+                        if (covoiturageDAO.ajouterCovoiturage(covoiturage)) {
+                            JOptionPane.showMessageDialog(this, "Le covoiturage a été ajouté avec succés.");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Le covoiturage n'a pas été ajouté !", null, 1);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.");
+                }
+            } catch (ParseException ex) {
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.");
         }
     }//GEN-LAST:event_boutton_AjouterActionPerformed
 
@@ -387,26 +404,17 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_GouvernoratDepartActionPerformed
 
     private void boutton_LocaliserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_LocaliserActionPerformed
-        VilleDAO villedao = new VilleDAO();
-        Ville depart = new Ville();
-        Ville arrivee = new Ville();
-
-        depart.setGouvernorat((String) cb_GouvernoratDepart.getSelectedItem());
-        arrivee.setGouvernorat((String) cb_GouvernoratArrivee.getSelectedItem());
-        depart.setLatitude(villedao.localiserVille_nom(depart.getGouvernorat()).getLatitude());
-        depart.setLongitude(villedao.localiserVille_nom(depart.getGouvernorat()).getLongitude());
-        arrivee.setLatitude(villedao.localiserVille_nom(arrivee.getGouvernorat()).getLatitude());
-        arrivee.setLongitude(villedao.localiserVille_nom(arrivee.getGouvernorat()).getLongitude());
-
-        Navigateur.main(depart, arrivee); // TODO add your handling code here:
+        VilleDAO villeDAO = new VilleDAO();
+        Ville villeDepart = new Ville();
+        Ville villeArrivee = new Ville();
+        villeDepart.setGouvernorat(cb_GouvernoratDepart.getSelectedItem().toString());
+        villeDepart.setLatitude(villeDAO.localiserVille_nom(villeDepart.getGouvernorat()).getLatitude());
+        villeDepart.setLongitude(villeDAO.localiserVille_nom(villeDepart.getGouvernorat()).getLongitude());
+        villeArrivee.setGouvernorat(cb_GouvernoratArrivee.getSelectedItem().toString());
+        villeArrivee.setLatitude(villeDAO.localiserVille_nom(villeArrivee.getGouvernorat()).getLatitude());
+        villeArrivee.setLongitude(villeDAO.localiserVille_nom(villeArrivee.getGouvernorat()).getLongitude());
+        Navigateur.main(villeDepart, villeArrivee);
     }//GEN-LAST:event_boutton_LocaliserActionPerformed
-
-    private void cb_DelegationDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_DelegationDepartActionPerformed
-        cb_LocaliteDepart.removeAllItems();
-        cb_DelegationDepart.removeAllItems();
-        remplirDelegationDepart();
-        remplirLocaliteDepart();
-    }//GEN-LAST:event_cb_DelegationDepartActionPerformed
 
     private void cb_GouvernoratArriveeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_GouvernoratArriveeActionPerformed
         cb_DelegationArrivee.removeAllItems();
@@ -420,6 +428,12 @@ public class AjouterCovoiturage extends javax.swing.JFrame {
         remplirDelegationArrivee();
         remplirLocaliteArrivee();
     }//GEN-LAST:event_cb_DelegationArriveeActionPerformed
+
+    private void cb_DelegationDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_DelegationDepartActionPerformed
+        cb_LocaliteDepart.removeAllItems();
+        remplirDelegationDepart();
+        remplirLocaliteDepart();
+    }//GEN-LAST:event_cb_DelegationDepartActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -65,4 +65,9 @@ public class Ville {
     public void setLatitude(float _latitude) {
         this._latitude = _latitude;
     }
+
+    @Override
+    public String toString() {
+        return "Ville{" + "_id=" + _id + ", _codePostal=" + _codePostal + ", _gouvernorat=" + _gouvernorat + ", _delegation=" + _delegation + ", _localite=" + _localite + ", _longitude=" + _longitude + ", _latitude=" + _latitude + '}';
+    }
 }

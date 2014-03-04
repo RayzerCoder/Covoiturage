@@ -12,11 +12,9 @@ import team.esprit.util.MyConnection;
 public class DetourDAO {
 
     public List<Ville> afficherDetours(Covoiturage covoiturage) {
-
         List<Ville> listVilles = new ArrayList<Ville>();
         String requete = "SELECT v.* FROM Detours d, Villes v WHERE id_covoiturage = "
                 + covoiturage.getId() + " AND d.id_ville = v.id";
-
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);

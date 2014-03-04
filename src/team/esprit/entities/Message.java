@@ -67,4 +67,9 @@ public class Message {
     public boolean isLu() {
         return _lu;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" + "_id=" + _id + ", _expediteur=" + _expediteur + ", _destinataire=" + _destinataire + ", _objet=" + _objet + ", _contenu=" + _contenu + ", _dateEnvoie=" + _dateEnvoie + ", _lu=" + _lu + '}';
+    }
 }

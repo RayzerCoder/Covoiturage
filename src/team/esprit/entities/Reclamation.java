@@ -14,9 +14,18 @@ public class Reclamation {
     private int _id;
     private String _email;
     private String _nomUtilisateur;
-    private String _message;
     private String _type;
-    
+    private boolean _vu;
+    private String _message;
+
+    public boolean isVu() {
+        return _vu;
+    }
+
+    public void setVu(boolean _etat) {
+        this._vu = _etat;
+    }
+
     public void setType(String _type) {
         this._type = _type;
     }
@@ -40,7 +49,7 @@ public class Reclamation {
     public String getNomUtilisateur() {
         return _nomUtilisateur;
     }
-    
+
     public void setEmail(String _email) {
         this._email = _email;
     }
@@ -68,7 +77,6 @@ public class Reclamation {
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);

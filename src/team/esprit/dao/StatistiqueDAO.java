@@ -2,20 +2,19 @@ package team.esprit.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import team.esprit.entities.StatCovoitureur;
+import team.esprit.entities.Statistique;
 import team.esprit.util.MyConnection;
 
 public class StatistiqueDAO {
 
-    public void ajouterStatistique(StatCovoitureur statistique) {
-
+    public void ajouterStatistique(Statistique statistique) {
         String requete = "INSERT INTO statistiques (nom, type, chemin) VALUES (?, ?, ?)";
         try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, statistique.getNom());
-            ps.setString(2, statistique.getType());
-            ps.setString(3, statistique.getChemin());
-            ps.executeUpdate();
+            PreparedStatement preparedStatement = MyConnection.getInstance().prepareStatement(requete);
+            preparedStatement.setString(1, statistique.getNom());
+            preparedStatement.setString(2, statistique.getType());
+            preparedStatement.setString(3, statistique.getChemin());
+            preparedStatement.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'insertion " + ex.getMessage());

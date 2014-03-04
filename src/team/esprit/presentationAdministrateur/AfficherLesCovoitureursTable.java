@@ -7,33 +7,37 @@ import team.esprit.entities.Covoitureur;
 
 public class AfficherLesCovoitureursTable extends AbstractTableModel {
 
-    List<Covoitureur> listeCovoitureurs;
-    String[] columTab = {"Identifient", "Nom d'utilisateur", "Adresse E-Mail"};
+    List<Covoitureur> listCovoitureurs;
+    String[] columnTab = {"ID", "Nom", "Prenom", "Email", "Nom d'utilisateur"};
 
     public AfficherLesCovoitureursTable() {
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        listeCovoitureurs = covoitureurDAO.afficherCovoitureurs();
+        listCovoitureurs = covoitureurDAO.afficherCovoitureurs();
     }
 
     @Override
     public int getRowCount() {
-        return listeCovoitureurs.size();
+        return listCovoitureurs.size();
     }
 
     @Override
     public int getColumnCount() {
-        return columTab.length;
+        return columnTab.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return listeCovoitureurs.get(rowIndex).getId();
+                return listCovoitureurs.get(rowIndex).getId();
             case 1:
-                return listeCovoitureurs.get(rowIndex).getNomUtilisateur();
+                return listCovoitureurs.get(rowIndex).getNom();
             case 2:
-                return listeCovoitureurs.get(rowIndex).getEmail();
+                return listCovoitureurs.get(rowIndex).getPrenom();
+            case 3:
+                return listCovoitureurs.get(rowIndex).getEmail();
+            case 4:
+                return listCovoitureurs.get(rowIndex).getNomUtilisateur();
             default:
                 return null;
         }
@@ -41,6 +45,6 @@ public class AfficherLesCovoitureursTable extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        return columTab[column];
+        return columnTab[column];
     }
 }

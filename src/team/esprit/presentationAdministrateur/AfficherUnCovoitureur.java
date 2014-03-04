@@ -8,13 +8,11 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public AfficherUnCovoitureur(String ch) {
+    public AfficherUnCovoitureur(String informations) {
         initComponents();
         setTitle("Afficher un Covoitureur");
         initialise();
-        ta_Covoitureur.setText(ch);
-        ta_Covoitureur.setLineWrap(true);
-        ta_Covoitureur.setWrapStyleWord(true);
+        ta_Covoitureur.setText(informations);
     }
     
     public void initialise() {
@@ -22,6 +20,8 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ta_Covoitureur.setLineWrap(true);
+        ta_Covoitureur.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -55,7 +55,7 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
+                .addGap(164, 164, 164)
                 .addComponent(boutton_Retour)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -63,7 +63,7 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(boutton_Retour)
                 .addContainerGap())

@@ -58,4 +58,9 @@ public class Evaluation {
     public Date getDateEvaluation() {
         return _dateEvaluation;
     }
+
+    @Override
+    public String toString() {
+        return "Evaluation{" + "_id=" + _id + ", _message=" + _message + ", _note=" + _note + ", _covoiturage=" + _covoiturage + ", _evaluateur=" + _evaluateur + ", _dateEvaluation=" + _dateEvaluation + '}';
+    }
 }

@@ -25,21 +25,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="label_Login1" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="tf_MotDePasse" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="boutton_Ajouter" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="label_Login" min="-2" pref="107" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="tf_Login" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="tf_Email" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="label_Login1" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="tf_MotDePasse" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="boutton_Ajouter" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -52,7 +53,7 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="label_Login" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_Login" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_Email" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -61,8 +62,8 @@
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="boutton_Ajouter" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boutton_Retour" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boutton_Ajouter" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -88,10 +89,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="label_Login">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Login :"/>
+        <Property name="text" type="java.lang.String" value="Adresse E-Mail:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tf_Login">
+    <Component class="javax.swing.JTextField" name="tf_Email">
     </Component>
     <Component class="javax.swing.JLabel" name="label_Login1">
       <Properties>
@@ -99,12 +100,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="tf_MotDePasse">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPassword"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_MotDePasseMouseClicked"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

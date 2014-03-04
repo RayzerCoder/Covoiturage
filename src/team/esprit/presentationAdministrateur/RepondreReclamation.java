@@ -1,23 +1,34 @@
 package team.esprit.presentationAdministrateur;
 
+import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
-import team.esprit.controllers.ReclamationController;
+import javax.swing.SwingUtilities;
+import team.esprit.controllers.MailController;
+import team.esprit.dao.ReclamationDAO;
+import team.esprit.entities.Reclamation;
 
 public class RepondreReclamation extends javax.swing.JFrame {
 
+    int id;
+    
     public void set_tf_Email(String ch) {
         tf_Email.setText(ch);
     }
-    
+
     public RepondreReclamation() {
+        this.dispose();
+    }
+    
+    public RepondreReclamation(int id) {
         initComponents();
         setTitle("Répondre à une réclamation");
         initialise();
         ta_Message.setLineWrap(true);
         ta_Message.setWrapStyleWord(true);
+        this.id = id;
     }
-    
+
     public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -140,8 +151,11 @@ public class RepondreReclamation extends javax.swing.JFrame {
     private void boutton_EnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_EnvoyerActionPerformed
         String destinataire = tf_Email.getText();
         String msg = ta_Message.getText();
-        ReclamationController reclamationController = new ReclamationController();
+        ReclamationDAO reclamationDAO = new ReclamationDAO();
+        MailController reclamationController = new MailController();
+        
         if (reclamationController.repondreReclamation(destinataire, msg) == true) {
+            reclamationDAO.modifierReclamation(id);
             JOptionPane.showMessageDialog(this, "Votre message a été transmis vers l'adresse: " + destinataire);
         } else {
             JOptionPane.showMessageDialog(this, "Votre message n'a pas été transmis vers l'adresse: " + destinataire);
@@ -149,12 +163,12 @@ public class RepondreReclamation extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_EnvoyerActionPerformed
 
     private void rb_TraiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_TraiteMouseClicked
-        ta_Message.setText("Bonjour,\n\nS'il vous plaît ne pas répondre à ce message. Les réponses à ce message sont acheminés vers une boîte aux lettres sans surveillance. "
+        ta_Message.setText("Bonjour,\n\nS'il vous plaît ne pas répondre à ce message. Les réponses à ce message sont acheminées vers une boîte aux lettres sans surveillance. "
                 + "\n\nVotre réclamation a été traitée avec succés. \n\nSi vous avez besoins de plus d'infomations, veuillez nous contacter sur http://www.covoiturage-tn.com/contactus.");
     }//GEN-LAST:event_rb_TraiteMouseClicked
 
     private void rb_NonTraiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_NonTraiteMouseClicked
-        ta_Message.setText("Bonjour,\n\nS'il vous plaît ne pas répondre à ce message. Les réponses à ce message sont acheminés vers une boîte aux lettres sans surveillance. "
+        ta_Message.setText("Bonjour,\n\nS'il vous plaît ne pas répondre à ce message. Les réponses à ce message sont acheminées vers une boîte aux lettres sans surveillance. "
                 + "\n\nVotre réclamation n'a pas été traitée. \n\nSi vous avez besoins de plus d'infomations, veuillez nous contacter sur http://www.covoiturage-tn.com/contactus.");
     }//GEN-LAST:event_rb_NonTraiteMouseClicked
 

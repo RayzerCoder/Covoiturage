@@ -5,16 +5,15 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class AfficherUnCovoiturage extends javax.swing.JFrame {
 
     public AfficherUnCovoiturage() {
+        initialise();
         this.dispose();
     }
-    
-    public AfficherUnCovoiturage(String ch) {
+
+    public AfficherUnCovoiturage(String informations) {
         initComponents();
         setTitle("Afficher un covoiturage");
         initialise();
-        ta_Afficher.setLineWrap(true);
-        ta_Afficher.setWrapStyleWord(true);
-        ta_Afficher.setText(ch);
+        ta_Afficher.setText(informations);
     }
 
     public void initialise() {
@@ -22,6 +21,8 @@ public class AfficherUnCovoiturage extends javax.swing.JFrame {
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        ta_Afficher.setLineWrap(true);
+        ta_Afficher.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -55,7 +56,7 @@ public class AfficherUnCovoiturage extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(157, 157, 157)
                 .addComponent(boutton_Retour)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -63,10 +64,10 @@ public class AfficherUnCovoiturage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(boutton_Retour)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

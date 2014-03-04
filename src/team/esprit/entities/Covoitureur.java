@@ -2,6 +2,7 @@ package team.esprit.entities;
 
 import java.sql.Date;
 import java.util.Comparator;
+import java.util.List;
 
 public class Covoitureur implements Comparator<Covoitureur> {
 
@@ -23,6 +24,20 @@ public class Covoitureur implements Comparator<Covoitureur> {
     private Date _dateDerniereVisite;
     private String _cleActivation; // Un cle pour vérifier son mail
     private String _idFacebook;
+    private List<Reservation> _reservations;
+    private List<Notification> _notifications;
+
+    public List<Reservation> getReservations() {
+        return _reservations;
+    }
+
+    public List<Notification> getNotifications() {
+        return _notifications;
+    }
+
+    public void setReservations(List<Reservation> _reservations) {
+        this._reservations = _reservations;
+    }
 
     public String getIdFacebook() {
         return _idFacebook;
@@ -177,5 +192,10 @@ public class Covoitureur implements Comparator<Covoitureur> {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Covoitureur{" + "_id=" + _id + ", _email=" + _email + ", _mdp=" + _mdp + ", _nomUtilisateur=" + _nomUtilisateur + ", _nom=" + _nom + ", _prenom=" + _prenom + ", _sexe=" + _sexe + ", _fumeur=" + _fumeur + ", _dateNaissance=" + _dateNaissance + ", _dateEnregistrement=" + _dateEnregistrement + ", _note=" + _note + ", _etat=" + _etat + ", _avatar=" + _avatar + ", _skype=" + _skype + ", _facebook=" + _facebook + ", _dateDerniereVisite=" + _dateDerniereVisite + ", _cleActivation=" + _cleActivation + ", _idFacebook=" + _idFacebook + '}';
     }
 }

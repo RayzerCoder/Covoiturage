@@ -1,6 +1,5 @@
 package team.esprit.presentationAdministrateur;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import team.esprit.dao.CovoiturageDAO;
@@ -8,8 +7,8 @@ import team.esprit.entities.Covoiturage;
 
 public class AfficherLesCovoituragesTable extends AbstractTableModel {
 
-    List<Covoiturage> listCovoiturages = new ArrayList<Covoiturage>();
-    String columnTab[] = {"Id", "Conducteur", "Ville de départ", "Ville d'arrivée", "Date de départ"};
+    List<Covoiturage> listCovoiturages;
+    String columnTab[] = {"ID", "Createur", "Ville de départ", "Ville d'arrivée", "Date de départ"};
 
     public AfficherLesCovoituragesTable() {
         CovoiturageDAO covoiturageDAO = new CovoiturageDAO();

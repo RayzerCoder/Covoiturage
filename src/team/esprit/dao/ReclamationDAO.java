@@ -14,34 +14,31 @@ import team.esprit.entities.Covoitureur;
 
 public class ReclamationDAO {
 
-    public boolean ajouterReclamation(Covoitureur c, Reclamation reclamation) {
+    public boolean envoyerReclamation(Covoitureur c, Reclamation reclamation) {
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         Covoitureur covoitureur = new Covoitureur();
-        
         try {
             if (covoitureurDAO.afficherCovoitureur_EMAIL(c.getEmail())) {
                 covoitureur = covoitureurDAO.afficherCovoitureurEMAIL(c.getEmail());
-            }
-            else
-            {
+            } else {
                 covoitureur.setEmail(c.getEmail());
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReclamationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        String requete = "INSERT INTO reclamations (nom_utilisateur, message, email, type) VALUES (?, ?, ?, ?)";
-
+        String requete = "INSERT INTO reclamations (email, nom_utilisateur, type, vu, message) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = MyConnection.getInstance().prepareStatement(requete);
+
+            preparedStatement.setString(1, reclamation.getEmail());
             if (covoitureur.getEmail().equals(reclamation.getEmail())) {
-                preparedStatement.setString(1, covoitureur.getNomUtilisateur());
+                preparedStatement.setString(2, covoitureur.getNomUtilisateur());
             } else {
-                preparedStatement.setString(1, null);
+                preparedStatement.setString(2, null);
             }
-            preparedStatement.setString(2, reclamation.getMessage());
-            preparedStatement.setString(3, reclamation.getEmail());
-            preparedStatement.setString(4, reclamation.getType());
+            preparedStatement.setString(3, reclamation.getType());
+            preparedStatement.setBoolean(4, false);
+            preparedStatement.setString(5, reclamation.getMessage());
             preparedStatement.executeUpdate();
             System.out.println("Ajout effectuée avec succès.");
             return true;
@@ -51,17 +48,33 @@ public class ReclamationDAO {
         }
     }
 
+    public void modifierReclamation(int id) {
+        String requete = "UPDATE reclamations SET vu = ? WHERE id = " + id;
+        try {
+            PreparedStatement preparedStatement = MyConnection.getInstance().prepareStatement(requete);
+
+            preparedStatement.setBoolean(1, true);
+
+            preparedStatement.executeUpdate();
+            System.out.println("Modification effectuée avec succès.");
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de l'ajout de la Reclamation " + ex.getMessage());
+        }
+    }
+
     public List<Reclamation> afficherReclamations() {
         List<Reclamation> listReclamations = new ArrayList<Reclamation>();
-        String requete = "SELECT email, type, message FROM reclamations";
+        String requete = "SELECT id, email, type, vu, message FROM reclamations ORDER BY vu";
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
             while (resultat.next()) {
                 Reclamation reclamation = new Reclamation();
-                reclamation.setEmail(resultat.getString(1));
-                reclamation.setType(resultat.getString(2));
-                reclamation.setMessage(resultat.getString(3));
+                reclamation.setId(resultat.getInt(1));
+                reclamation.setEmail(resultat.getString(2));
+                reclamation.setType(resultat.getString(3));
+                reclamation.setVu(resultat.getBoolean(4));
+                reclamation.setMessage(resultat.getString(5));
                 listReclamations.add(reclamation);
             }
             return listReclamations;

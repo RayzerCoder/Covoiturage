@@ -6,6 +6,7 @@ public class GestionReclamations extends javax.swing.JFrame {
 
     public GestionReclamations() {
         initComponents();
+        this.setTitle("Gestion des réclamations");
         initialise();
         ta_Reclamation.setLineWrap(true);
         ta_Reclamation.setWrapStyleWord(true);
@@ -66,21 +67,18 @@ public class GestionReclamations extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                        .addGap(51, 51, 51)
                         .addComponent(boutton_Repondre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(70, 70, 70)
                         .addComponent(boutton_Consulter)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(boutton_Retour)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addGap(58, 58, 58))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,11 +99,11 @@ public class GestionReclamations extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_RepondreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RepondreActionPerformed
-        RepondreReclamation repondreReclamation = new RepondreReclamation();
-        
-        int x = table_Reclamation.getSelectedRow();
-        int y = table_Reclamation.getSelectedColumn();
-        repondreReclamation.set_tf_Email(table_Reclamation.getValueAt(x, 0).toString());
+        int ligneSelectionne = table_Reclamation.getSelectedRow();
+        int id = (int) table_Reclamation.getValueAt(ligneSelectionne, 0);
+        RepondreReclamation repondreReclamation = new RepondreReclamation(id);
+        System.out.println(table_Reclamation.getValueAt(ligneSelectionne, 1).toString());
+        repondreReclamation.set_tf_Email(table_Reclamation.getValueAt(ligneSelectionne, 1).toString());
         this.dispose();
         repondreReclamation.setVisible(true);
     }//GEN-LAST:event_boutton_RepondreActionPerformed
@@ -117,10 +115,10 @@ public class GestionReclamations extends javax.swing.JFrame {
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
     private void boutton_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ConsulterActionPerformed
-        int x = table_Reclamation.getSelectedRow();
-        ta_Reclamation.setText(table_Reclamation.getValueAt(x, 0).toString()
-                + " : " + table_Reclamation.getValueAt(x, 1).toString()
-                + "\n \n" + table_Reclamation.getValueAt(x, 2).toString());
+        int ligneSelectionne = table_Reclamation.getSelectedRow();
+        ta_Reclamation.setText(table_Reclamation.getValueAt(ligneSelectionne, 1).toString()
+                + " : " + table_Reclamation.getValueAt(ligneSelectionne, 2).toString()
+                + "\n \n" + table_Reclamation.getValueAt(ligneSelectionne, 4).toString());
     }//GEN-LAST:event_boutton_ConsulterActionPerformed
 
     public static void main(String args[]) {

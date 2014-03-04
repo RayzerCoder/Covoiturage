@@ -8,12 +8,24 @@ import team.esprit.entities.Reclamation;
 
 public class EnvoyerReclamation extends javax.swing.JFrame {
 
+    String email;
+    
     public EnvoyerReclamation() {
         initComponents();
         setTitle("Envoyer une réclamation");
         initialise();
         ta_Message.setLineWrap(true);
         ta_Message.setWrapStyleWord(true);
+    }
+    
+    public EnvoyerReclamation(String email) {
+        initComponents();
+        setTitle("Envoyer une réclamation");
+        initialise();
+        ta_Message.setLineWrap(true);
+        ta_Message.setWrapStyleWord(true);
+        this.email = email;
+        tf_Email.setText(email);
     }
     
     public void initialise() {
@@ -121,7 +133,7 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
         reclamation.setType(cb_Type.getSelectedItem().toString());
         covoitureur.setEmail(tf_Email.getText());
         
-        if (reclamationDAO.ajouterReclamation(covoitureur, reclamation) == true) {
+        if (reclamationDAO.envoyerReclamation(covoitureur, reclamation) == true) {
             JOptionPane.showMessageDialog(this, "Votre réclamation a été transmise avec succés.");
         } else {
             JOptionPane.showMessageDialog(this, "Votre réclamation n'a pas été transmise.");

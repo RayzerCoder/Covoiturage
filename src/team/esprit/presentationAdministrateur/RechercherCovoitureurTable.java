@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package team.esprit.presentationAdministrateur;
 
 import java.util.List;
@@ -9,22 +5,16 @@ import javax.swing.table.AbstractTableModel;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
 
-/**
- *
- * @author Hhussein
- */
-public class RechercherCovoitureurTable extends AbstractTableModel{
+public class RechercherCovoitureurTable extends AbstractTableModel {
 
-    String ch ; 
+    String ch;
     List<Covoitureur> listeCovoitureurs;
-   // Covoitureur covoitureur = new Covoitureur();
-    String[] columTab = {"Identifient", "Nom", "Prenom" , "Email"};
+    String[] columTab = {"ID", "Nom", "Prenom", "Email", "Nom d'utilisateur"};
 
     public RechercherCovoitureurTable(String ch) {
-        this.ch=ch ;
+        this.ch = ch;
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        listeCovoitureurs = covoitureurDAO.rechercherCovoitureur(ch);
-       
+        listeCovoitureurs = covoitureurDAO.rechercherCovoitureurs(ch);
     }
 
     @Override
@@ -46,8 +36,10 @@ public class RechercherCovoitureurTable extends AbstractTableModel{
                 return listeCovoitureurs.get(rowIndex).getNom();
             case 2:
                 return listeCovoitureurs.get(rowIndex).getPrenom();
-            case 3 :
+            case 3:
                 return listeCovoitureurs.get(rowIndex).getEmail();
+            case 4:
+                return listeCovoitureurs.get(rowIndex).getNomUtilisateur();
             default:
                 return null;
         }
@@ -57,5 +49,4 @@ public class RechercherCovoitureurTable extends AbstractTableModel{
     public String getColumnName(int column) {
         return columTab[column];
     }
-    
 }

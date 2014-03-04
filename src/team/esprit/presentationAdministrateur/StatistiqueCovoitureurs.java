@@ -2,6 +2,7 @@ package team.esprit.presentationAdministrateur;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartUtilities;
@@ -10,17 +11,24 @@ import team.esprit.controllers.StatCovoitureurController;
 
 public class StatistiqueCovoitureurs extends javax.swing.JFrame {
 
+    public File directoryCovoitureur = new File("./pictures/covoitureurs");
+    public String date;
+
     public StatistiqueCovoitureurs() {
         initComponents();
-        setTitle("Statistiques des Covoitureurs");
+        setTitle("Statistiques des covoitureurs");
         initialise();
     }
-    
+
     public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        directoryCovoitureur.mkdirs();
+        date = new Date().toString();
+        date = date.substring(4, 10);
+        date = date.replaceAll("\\s+","");
     }
 
     @SuppressWarnings("unchecked")
@@ -36,7 +44,6 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
         boutton_CovoitureursInscritsParMois = new javax.swing.JButton();
         boutton_GenererRapport = new javax.swing.JButton();
         check_Imprimer = new javax.swing.JCheckBox();
-        chart_Covoitureur = new javax.swing.JPanel();
         boutton_Retour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,8 +77,13 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
         });
 
         boutton_CovoitureursConnectes.setText("Covoitureurs Connéctés");
+        boutton_CovoitureursConnectes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutton_CovoitureursConnectesActionPerformed(evt);
+            }
+        });
 
-        boutton_CovoitureursInscrits.setText("Covoitureurs Inscrits par an");
+        boutton_CovoitureursInscrits.setText("Covoitureurs inscrits par annes");
         boutton_CovoitureursInscrits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutton_CovoitureursInscritsActionPerformed(evt);
@@ -89,17 +101,6 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
 
         check_Imprimer.setText("Imprimer");
 
-        javax.swing.GroupLayout chart_CovoitureurLayout = new javax.swing.GroupLayout(chart_Covoitureur);
-        chart_Covoitureur.setLayout(chart_CovoitureurLayout);
-        chart_CovoitureurLayout.setHorizontalGroup(
-            chart_CovoitureurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 137, Short.MAX_VALUE)
-        );
-        chart_CovoitureurLayout.setVerticalGroup(
-            chart_CovoitureurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         boutton_Retour.setText("Retour");
         boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,56 +112,49 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(boutton_GenererRapport, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(check_Imprimer, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addGap(69, 69, 69))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutton_CovoitureursInscritsParMois, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_CovoitureursConnectes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CovoitureursActifNonActif, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_FumeurNonFumeur, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_HommeFemme, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_MeilleurCovoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_CovoitureursInscritsParMois, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(boutton_CovoitureursInscrits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutton_CovoitureursConnectes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CovoitureursActifNonActif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutton_FumeurNonFumeur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutton_HommeFemme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutton_MeilleurCovoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chart_Covoitureur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(boutton_Retour)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(boutton_GenererRapport)
+                        .addGap(50, 50, 50)
+                        .addComponent(check_Imprimer, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                        .addGap(42, 42, 42)
+                        .addComponent(boutton_Retour)
+                        .addGap(59, 59, 59)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boutton_MeilleurCovoitureur)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boutton_HommeFemme)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boutton_FumeurNonFumeur)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CovoitureursActifNonActif)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boutton_CovoitureursConnectes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boutton_CovoitureursInscrits)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boutton_CovoitureursInscritsParMois))
-                    .addComponent(chart_Covoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(boutton_MeilleurCovoitureur, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_HommeFemme, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_FumeurNonFumeur, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(CovoitureursActifNonActif, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_CovoitureursConnectes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_CovoitureursInscrits, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_CovoitureursInscritsParMois, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_GenererRapport)
-                    .addComponent(check_Imprimer))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boutton_Retour))
+                    .addComponent(check_Imprimer)
+                    .addComponent(boutton_Retour))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,13 +164,13 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
         StatCovoitureurController statistique = new StatCovoitureurController();
         JFreeChart chart = statistique.statistiqueMeilleurCovoitureur();
         try {
-            ChartUtilities.saveChartAsJPEG(new File("/NetBeansProjects/Covoiturage-Java-Desktop/chartNombreCovoitureurParAnnee.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartMeilleursCovoitureurs.jpg"), chart, 1366, 768);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        ChartFrame frame = new ChartFrame("test", chart);
+        ChartFrame frame = new ChartFrame("Meilleurs Covoitureurs", chart);
         frame.setVisible(true);
-        frame.setSize(450, 400);
+        frame.pack();
     }//GEN-LAST:event_boutton_MeilleurCovoitureurActionPerformed
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
@@ -189,66 +183,79 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
         StatCovoitureurController statistique = new StatCovoitureurController();
         JFreeChart chart = statistique.statistiqueHommeFemme();
         try {
-            ChartUtilities.saveChartAsJPEG(new File("/NetBeansProjects/Covoiturage-Java-Desktop/chartNombreCovoitureurParAnnee.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartHommes_Femmes.jpg"), chart, 1366, 768);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        ChartFrame frame = new ChartFrame("test", chart);
+        ChartFrame frame = new ChartFrame("Hommmes / Femmes", chart);
         frame.setVisible(true);
-        frame.setSize(450, 400);
+        frame.pack();
     }//GEN-LAST:event_boutton_HommeFemmeActionPerformed
 
     private void boutton_FumeurNonFumeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_FumeurNonFumeurActionPerformed
         StatCovoitureurController statistique = new StatCovoitureurController();
         JFreeChart chart = statistique.statistiqueFumeur();
         try {
-            ChartUtilities.saveChartAsJPEG(new File("/NetBeansProjects/Covoiturage-Java-Desktop/chartNombreCovoitureurParAnnee.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartFumeur_NonFumeur.jpg"), chart, 1366, 768);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        ChartFrame frame = new ChartFrame("Fumeur / Non Fumeur", chart);
+        ChartFrame frame = new ChartFrame("Fumeurs / Non Fumeurs", chart);
         frame.setVisible(true);
-        frame.setSize(450, 400);
+        frame.pack();
     }//GEN-LAST:event_boutton_FumeurNonFumeurActionPerformed
 
     private void CovoitureursActifNonActifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CovoitureursActifNonActifActionPerformed
         StatCovoitureurController statistique = new StatCovoitureurController();
-        JFreeChart chart = statistique.statistiqueCovoitureursActifNonActif();
+        JFreeChart chart = statistique.statistiqueCovoitureursEtats();
         try {
-            ChartUtilities.saveChartAsJPEG(new File("/NetBeansProjects/Covoiturage-Java-Desktop/chartNombreCovoitureurParAnnee.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartActifs_NonActifs.jpg"), chart, 1366, 768);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         ChartFrame frame = new ChartFrame("Actif / Non Actif", chart);
         frame.setVisible(true);
-        frame.setSize(450, 400);
+        frame.pack();
     }//GEN-LAST:event_CovoitureursActifNonActifActionPerformed
 
     private void boutton_CovoitureursInscritsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_CovoitureursInscritsActionPerformed
-           StatCovoitureurController statistique = new StatCovoitureurController();
+        StatCovoitureurController statistique = new StatCovoitureurController();
         JFreeChart chart = statistique.statistiqueCovoitureursInscritParAn();
         try {
-            ChartUtilities.saveChartAsJPEG(new File("/NetBeansProjects/Covoiturage-Java-Desktop/chartNombreCovoitureurParAnnee.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartNombreCovoitureurInscritsParAnnee.jpg"), chart, 1366, 768);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        ChartFrame frame = new ChartFrame("Inscrits / Année", chart);
+        ChartFrame frame = new ChartFrame("Inscrits par Année", chart);
         frame.setVisible(true);
-        frame.setSize(450, 400);
+        frame.pack();
     }//GEN-LAST:event_boutton_CovoitureursInscritsActionPerformed
 
     private void boutton_CovoitureursInscritsParMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_CovoitureursInscritsParMoisActionPerformed
-      StatCovoitureurController statistique = new StatCovoitureurController();
-        JFreeChart chart = statistique.statistiqueCovoitureursInscritParMois();
+        StatCovoitureurController statistique = new StatCovoitureurController();
+        JFreeChart chart = statistique.statistiqueCovoitureursInscritsMois();
         try {
-            ChartUtilities.saveChartAsJPEG(new File("/NetBeansProjects/Covoiturage-Java-Desktop/chartNombreCovoitureurParAnnee.jpg"), chart, 500, 300);
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartNombreCovoitureurParMois.jpg"), chart, 1366, 768);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        ChartFrame frame = new ChartFrame("Inscrits / Mois", chart);
+        ChartFrame frame = new ChartFrame("Inscrits par Mois", chart);
         frame.setVisible(true);
-        frame.setSize(450, 400);
+        frame.pack();
     }//GEN-LAST:event_boutton_CovoitureursInscritsParMoisActionPerformed
+
+    private void boutton_CovoitureursConnectesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_CovoitureursConnectesActionPerformed
+        StatCovoitureurController statistique = new StatCovoitureurController();
+        JFreeChart chart = statistique.statistiqueCovoitureursConnectes();
+        try {
+            ChartUtilities.saveChartAsJPEG(new File(directoryCovoitureur + "\\" + date + "_chartNombreCovoitureurConnectes.jpg.jpg"), chart, 1366, 768);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        ChartFrame frame = new ChartFrame("Covoitureur Connectes", chart);
+        frame.setVisible(true);
+        frame.pack();
+    }//GEN-LAST:event_boutton_CovoitureursConnectesActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -267,7 +274,6 @@ public class StatistiqueCovoitureurs extends javax.swing.JFrame {
     private javax.swing.JButton boutton_HommeFemme;
     private javax.swing.JButton boutton_MeilleurCovoitureur;
     private javax.swing.JButton boutton_Retour;
-    private javax.swing.JPanel chart_Covoitureur;
     private javax.swing.JCheckBox check_Imprimer;
     // End of variables declaration//GEN-END:variables
 }

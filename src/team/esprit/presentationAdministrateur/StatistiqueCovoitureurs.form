@@ -23,64 +23,54 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-              <Component id="boutton_GenererRapport" pref="141" max="32767" attributes="0"/>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="check_Imprimer" pref="95" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="boutton_CovoitureursInscritsParMois" alignment="0" max="32767" attributes="0"/>
-                  <Component id="boutton_CovoitureursInscrits" alignment="0" max="32767" attributes="0"/>
-                  <Component id="boutton_CovoitureursConnectes" alignment="0" max="32767" attributes="0"/>
-                  <Component id="CovoitureursActifNonActif" alignment="0" max="32767" attributes="0"/>
-                  <Component id="boutton_FumeurNonFumeur" alignment="0" max="32767" attributes="0"/>
-                  <Component id="boutton_HommeFemme" alignment="0" max="32767" attributes="0"/>
-                  <Component id="boutton_MeilleurCovoitureur" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="chart_Covoitureur" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="boutton_CovoitureursConnectes" alignment="1" max="32767" attributes="0"/>
+                  <Component id="CovoitureursActifNonActif" alignment="1" max="32767" attributes="0"/>
+                  <Component id="boutton_FumeurNonFumeur" alignment="1" max="32767" attributes="0"/>
+                  <Component id="boutton_HommeFemme" alignment="1" max="32767" attributes="0"/>
+                  <Component id="boutton_MeilleurCovoitureur" max="32767" attributes="0"/>
+                  <Component id="boutton_CovoitureursInscritsParMois" alignment="1" max="32767" attributes="0"/>
+                  <Component id="boutton_CovoitureursInscrits" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="boutton_GenererRapport" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="check_Imprimer" pref="79" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="boutton_MeilleurCovoitureur" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="boutton_HommeFemme" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="boutton_FumeurNonFumeur" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="CovoitureursActifNonActif" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="boutton_CovoitureursConnectes" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="boutton_CovoitureursInscrits" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="boutton_CovoitureursInscritsParMois" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="chart_Covoitureur" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="boutton_MeilleurCovoitureur" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_HommeFemme" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_FumeurNonFumeur" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="CovoitureursActifNonActif" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_CovoitureursConnectes" min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_CovoitureursInscrits" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_CovoitureursInscritsParMois" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boutton_GenererRapport" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="check_Imprimer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="boutton_Retour" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,10 +112,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Covoitureurs Conn&#xe9;ct&#xe9;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_CovoitureursConnectesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boutton_CovoitureursInscrits">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Covoitureurs Inscrits par an"/>
+        <Property name="text" type="java.lang.String" value="Covoitureurs inscrits par annes"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_CovoitureursInscritsActionPerformed"/>
@@ -149,21 +142,6 @@
         <Property name="text" type="java.lang.String" value="Imprimer"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="chart_Covoitureur">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="137" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JButton" name="boutton_Retour">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retour"/>

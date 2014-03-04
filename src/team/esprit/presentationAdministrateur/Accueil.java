@@ -8,7 +8,6 @@ public class Accueil extends javax.swing.JFrame {
         initComponents();
         setTitle("Accueil");
         initialise();
-        jLabel1.setText(null);
     }
 
     public void initialise() {
@@ -22,7 +21,6 @@ public class Accueil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         boutton_Covoitureurs = new javax.swing.JButton();
         boutton_Covoiturages = new javax.swing.JButton();
         boutton_Reclamations = new javax.swing.JButton();
@@ -30,9 +28,6 @@ public class Accueil extends javax.swing.JFrame {
         boutton_Quitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Administration");
 
         boutton_Covoitureurs.setText("Gestion des covoitureurs");
         boutton_Covoitureurs.setFocusable(false);
@@ -77,36 +72,35 @@ public class Accueil extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(boutton_Covoitureurs)
                         .addGap(44, 44, 44)
                         .addComponent(boutton_Covoiturages))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(boutton_Reclamations)
                         .addGap(44, 44, 44)
-                        .addComponent(boutton_Statistiques, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addComponent(boutton_Quitter, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                        .addComponent(boutton_Statistiques, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(boutton_Quitter, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boutton_Covoitureurs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boutton_Covoiturages, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boutton_Covoitureurs)
-                    .addComponent(boutton_Covoiturages))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boutton_Reclamations)
-                    .addComponent(boutton_Statistiques))
-                .addGap(37, 37, 37)
-                .addComponent(boutton_Quitter)
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(boutton_Reclamations, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boutton_Statistiques, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(boutton_Quitter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -165,6 +159,5 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JButton boutton_Quitter;
     private javax.swing.JButton boutton_Reclamations;
     private javax.swing.JButton boutton_Statistiques;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,6 @@ public class Administrateur {
     private String _email;
     private String _mdp;
     private String _nom;
-    private String _prenom;
 
     public void setId(int _id) {
         this._id = _id;
@@ -14,10 +13,6 @@ public class Administrateur {
 
     public void setNom(String _nom) {
         this._nom = _nom;
-    }
-
-    public void setPrenom(String _prenom) {
-        this._prenom = _prenom;
     }
 
     public void setEmail(String _email) {
@@ -36,9 +31,6 @@ public class Administrateur {
         return _nom;
     }
 
-    public String getPrenom() {
-        return _prenom;
-    }
 
     public String getEmail() {
         return _email;
@@ -50,6 +42,6 @@ public class Administrateur {
 
     @Override
     public String toString() {
-        return "Administrateur{" + "_id=" + _id + ", _nom=" + _nom + ", _prenom=" + _prenom + ", _email=" + _email + ", _mdp=" + _mdp + '}';
+        return "Administrateur{" + "_id=" + _id + ", _email=" + _email + ", _mdp=" + _mdp + ", _nom=" + _nom + '}';
     }
 }
