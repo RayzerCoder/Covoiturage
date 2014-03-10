@@ -11,8 +11,23 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.Year;
 import team.esprit.dao.CovoiturageDAO;
+import team.esprit.entities.Covoitureur;
 
 public class StatCovoiturageController {
+
+    public JFreeChart statistiqueCovoiturageFrequenceVilleCovoitureur(Covoitureur covoitureur) {
+        Map<String, Integer> mapCovoiturageFrequenceVilleCovoitureur = new HashMap<String, Integer>();
+        CovoiturageDAO covoiturageDAO = new CovoiturageDAO();
+        mapCovoiturageFrequenceVilleCovoitureur = covoiturageDAO.afficherFrequenceVilleCovoitureur(covoitureur);
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for (Map.Entry<String, Integer> entry : mapCovoiturageFrequenceVilleCovoitureur.entrySet()) {
+            String ville = entry.getKey();
+            Integer frequence = entry.getValue();
+            dataset.setValue(frequence, "Frequence", ville);
+        }
+        JFreeChart chart = ChartFactory.createBarChart3D("Fréquence des villes visitées", "Ville", "Frequence", dataset, PlotOrientation.VERTICAL, true, true, false);
+        return chart;
+    }
 
     public JFreeChart statistiqueCovoiturageFrequenceVille() {
         Map<String, Integer> mapCovoiturageFrequenceVille = new HashMap<String, Integer>();
@@ -24,7 +39,7 @@ public class StatCovoiturageController {
             Integer frequence = entry.getValue();
             dataset.setValue(frequence, "Frequence", ville);
         }
-        JFreeChart chart = ChartFactory.createBarChart3D("Les villes les plus visités", "Ville", "Frequence", dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart chart = ChartFactory.createBarChart3D("Fréquence des villes visitées", "Ville", "Frequence", dataset, PlotOrientation.VERTICAL, true, true, false);
         return chart;
     }
 

@@ -8,7 +8,7 @@ import team.esprit.entities.Covoitureur;
 public class AfficherLesCovoitureursTable extends AbstractTableModel {
 
     List<Covoitureur> listCovoitureurs;
-    String[] columnTab = {"ID", "Nom", "Prenom", "Email", "Nom d'utilisateur"};
+    String[] columnTab = {"ID", "Nom", "Prenom", "Email", "Nom d'utilisateur", "Etat"};
 
     public AfficherLesCovoitureursTable() {
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
@@ -38,6 +38,8 @@ public class AfficherLesCovoitureursTable extends AbstractTableModel {
                 return listCovoitureurs.get(rowIndex).getEmail();
             case 4:
                 return listCovoitureurs.get(rowIndex).getNomUtilisateur();
+            case 5:
+                return listCovoitureurs.get(rowIndex).getEtat();
             default:
                 return null;
         }

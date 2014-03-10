@@ -23,44 +23,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="boutton_Covoitureurs" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="44" pref="44" max="44" attributes="0"/>
-                      <Component id="boutton_Covoiturages" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="boutton_Reclamations" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="44" pref="44" max="44" attributes="0"/>
-                      <Component id="boutton_Statistiques" pref="162" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                      <Component id="boutton_Quitter" min="-2" pref="128" max="-2" attributes="0"/>
-                  </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="boutton_Reclamations" pref="300" max="32767" attributes="0"/>
+                  <Component id="boutton_Covoitureurs" alignment="0" max="32767" attributes="0"/>
+                  <Component id="boutton_Covoiturages" alignment="0" max="32767" attributes="0"/>
+                  <Component id="boutton_Statistiques" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="boutton_Covoitureurs" min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_Covoiturages" min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_Reclamations" min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="boutton_Statistiques" min="-2" pref="75" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="boutton_Covoitureurs" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="boutton_Covoiturages" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="boutton_Reclamations" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="boutton_Statistiques" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="boutton_Quitter" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,6 +54,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="boutton_Covoitureurs">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gestion des covoitureurs"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -79,6 +68,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Covoiturages">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gestion des covoiturages"/>
       </Properties>
       <Events>
@@ -87,6 +79,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Reclamations">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gestion des r&#xe9;clamations"/>
       </Properties>
       <Events>
@@ -95,18 +90,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Statistiques">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Statistiques"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_StatistiquesActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="boutton_Quitter">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Quitter"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_QuitterActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -1,22 +1,20 @@
 package team.esprit.presentationAdministrateur;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 public class GestionReclamations extends javax.swing.JFrame {
 
     public GestionReclamations() {
         initComponents();
         this.setTitle("Gestion des réclamations");
         initialise();
-        ta_Reclamation.setLineWrap(true);
-        ta_Reclamation.setWrapStyleWord(true);
     }
     
     public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ta_Reclamation.setLineWrap(true);
+        ta_Reclamation.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -76,23 +74,27 @@ public class GestionReclamations extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(boutton_Retour)
                         .addGap(58, 58, 58))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_Repondre)
                     .addComponent(boutton_Consulter)
                     .addComponent(boutton_Retour))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -100,18 +102,13 @@ public class GestionReclamations extends javax.swing.JFrame {
 
     private void boutton_RepondreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RepondreActionPerformed
         int ligneSelectionne = table_Reclamation.getSelectedRow();
-        int id = (int) table_Reclamation.getValueAt(ligneSelectionne, 0);
-        RepondreReclamation repondreReclamation = new RepondreReclamation(id);
-        System.out.println(table_Reclamation.getValueAt(ligneSelectionne, 1).toString());
-        repondreReclamation.set_tf_Email(table_Reclamation.getValueAt(ligneSelectionne, 1).toString());
+        int idReclamation = (int) table_Reclamation.getValueAt(ligneSelectionne, 0);
         this.dispose();
-        repondreReclamation.setVisible(true);
+        new RepondreReclamation(idReclamation).setVisible(true);
     }//GEN-LAST:event_boutton_RepondreActionPerformed
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        Accueil accueil = new Accueil();
         this.dispose();
-        accueil.setVisible(true);
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
     private void boutton_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ConsulterActionPerformed

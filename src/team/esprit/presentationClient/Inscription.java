@@ -6,12 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
-import team.esprit.controllers.MailController;
+import team.esprit.util.MailSender;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
-import team.esprit.presentationAdministrateur.Authentification;
+import team.esprit.presentation.Authentification;
 
 public class Inscription extends javax.swing.JFrame {
 
@@ -29,14 +28,14 @@ public class Inscription extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
-    public String creerCleAvtivation() {
+    private String creerCleAvtivation() {
         return UUID.randomUUID().toString();
     }
 
-    public String MD5Crypt(char[] textField) {
+    private String MD5Crypt(char[] textField) {
         String mdp = "";
         MessageDigest messageDigest;
         byte[] digest;
@@ -78,7 +77,7 @@ public class Inscription extends javax.swing.JFrame {
         br_Homme = new javax.swing.JRadioButton();
         br_Femme = new javax.swing.JRadioButton();
         boutton_Valider = new javax.swing.JButton();
-        boutton_Retour = new javax.swing.JButton();
+        boutton_Annuler = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         tf_Prenom = new javax.swing.JTextField();
@@ -100,6 +99,7 @@ public class Inscription extends javax.swing.JFrame {
         buttonGroup1.add(br_Femme);
         br_Femme.setText("Femme");
 
+        boutton_Valider.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Valider.setText("Valider");
         boutton_Valider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,10 +107,11 @@ public class Inscription extends javax.swing.JFrame {
             }
         });
 
-        boutton_Retour.setText("Retour");
-        boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
+        boutton_Annuler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        boutton_Annuler.setText("Annuler");
+        boutton_Annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutton_RetourActionPerformed(evt);
+                boutton_AnnulerActionPerformed(evt);
             }
         });
 
@@ -127,7 +128,7 @@ public class Inscription extends javax.swing.JFrame {
                     .addGap(21, 21, 21)
                     .addComponent(boutton_Valider)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                    .addComponent(boutton_Retour)
+                    .addComponent(boutton_Annuler)
                     .addGap(16, 16, 16))
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -163,7 +164,7 @@ public class Inscription extends javax.swing.JFrame {
                                     .addGap(32, 32, 32)))
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +200,7 @@ public class Inscription extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_Valider)
-                    .addComponent(boutton_Retour))
+                    .addComponent(boutton_Annuler))
                 .addContainerGap())
         );
 
@@ -209,7 +210,7 @@ public class Inscription extends javax.swing.JFrame {
     private void boutton_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ValiderActionPerformed
         Covoitureur covoitureur = new Covoitureur();
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        MailController mailController = new MailController();
+        MailSender mailController = new MailSender();
         if (tf_Email.getText().matches(_regexAdressEmail) == false) {
             JOptionPane.showMessageDialog(this, "Adresse E-Mail invalide !", null, 2);
         } else if (tf_Email.getText().matches(_regexAdressEmail)) {
@@ -269,11 +270,11 @@ public class Inscription extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_boutton_ValiderActionPerformed
-    private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
+    private void boutton_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AnnulerActionPerformed
         Authentification authentification = new Authentification();
         this.dispose();
         authentification.setVisible(true);
-    }//GEN-LAST:event_boutton_RetourActionPerformed
+    }//GEN-LAST:event_boutton_AnnulerActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -283,7 +284,7 @@ public class Inscription extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton boutton_Retour;
+    private javax.swing.JButton boutton_Annuler;
     private javax.swing.JButton boutton_Valider;
     private javax.swing.JRadioButton br_Femme;
     private javax.swing.JRadioButton br_Homme;

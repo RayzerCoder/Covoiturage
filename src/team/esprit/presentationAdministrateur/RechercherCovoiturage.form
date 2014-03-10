@@ -6,7 +6,6 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -27,7 +26,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="label_Critere" min="-2" pref="53" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cb_Critere" min="-2" pref="122" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -63,7 +62,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boutton_Rechercher" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cb_Critere" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="label_Critere" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tf_Critere" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -84,7 +83,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="tf_Critere">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="label_Critere">
       <Properties>
         <Property name="text" type="java.lang.String" value="Critere :"/>
       </Properties>
@@ -92,7 +91,7 @@
     <Component class="javax.swing.JComboBox" name="cb_Critere">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Conducteur&quot;,&quot;Ville Depart&quot;,&quot;Ville Arriv&#xe9;e&quot;,&quot;Date de d&#xe9;part&quot; })" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&quot;Ville de d&#xe9;part&quot;, &quot;Ville d&apos;arriv&#xe9;e&quot;})" type="code"/>
         </Property>
       </Properties>
     </Component>

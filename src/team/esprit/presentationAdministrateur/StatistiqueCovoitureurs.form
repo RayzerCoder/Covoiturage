@@ -24,23 +24,24 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="boutton_CovoitureursConnectes" alignment="1" max="32767" attributes="0"/>
-                  <Component id="CovoitureursActifNonActif" alignment="1" max="32767" attributes="0"/>
-                  <Component id="boutton_FumeurNonFumeur" alignment="1" max="32767" attributes="0"/>
-                  <Component id="boutton_HommeFemme" alignment="1" max="32767" attributes="0"/>
-                  <Component id="boutton_MeilleurCovoitureur" max="32767" attributes="0"/>
-                  <Component id="boutton_CovoitureursInscritsParMois" alignment="1" max="32767" attributes="0"/>
-                  <Component id="boutton_CovoitureursInscrits" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="CovoitureursActifNonActif" alignment="1" max="32767" attributes="0"/>
+                          <Component id="boutton_FumeurNonFumeur" alignment="1" max="32767" attributes="0"/>
+                          <Component id="boutton_HommeFemme" alignment="1" max="32767" attributes="0"/>
+                          <Component id="boutton_MeilleurCovoitureur" max="32767" attributes="0"/>
+                          <Component id="boutton_CovoitureursInscritsParMois" alignment="1" max="32767" attributes="0"/>
+                          <Component id="boutton_CovoitureursInscrits" pref="430" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="boutton_GenererRapport" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="check_Imprimer" pref="79" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -59,15 +60,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="CovoitureursActifNonActif" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="boutton_CovoitureursConnectes" min="-2" pref="51" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="boutton_CovoitureursInscrits" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="boutton_CovoitureursInscritsParMois" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boutton_GenererRapport" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="check_Imprimer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boutton_Retour" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -78,7 +76,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="boutton_MeilleurCovoitureur">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Meilleur Covoitureur"/>
+        <Property name="text" type="java.lang.String" value="Meilleurs covoitureurs"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_MeilleurCovoitureurActionPerformed"/>
@@ -86,7 +84,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_HommeFemme">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Homme / Femme"/>
+        <Property name="text" type="java.lang.String" value="Hommes / Femmes"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_HommeFemmeActionPerformed"/>
@@ -94,7 +92,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_FumeurNonFumeur">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fumeur / Non fumeur"/>
+        <Property name="text" type="java.lang.String" value="Fumeurs / Non fumeurs"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_FumeurNonFumeurActionPerformed"/>
@@ -102,18 +100,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="CovoitureursActifNonActif">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Covoitureurs Actifs / Non Actifs"/>
+        <Property name="text" type="java.lang.String" value="Actifs / Non actifs"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CovoitureursActifNonActifActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="boutton_CovoitureursConnectes">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Covoitureurs Conn&#xe9;ct&#xe9;s"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_CovoitureursConnectesActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boutton_CovoitureursInscrits">
@@ -136,11 +126,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Generer Rapport"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="check_Imprimer">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Imprimer"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_GenererRapportActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Retour">
       <Properties>

@@ -1,7 +1,5 @@
 package team.esprit.presentationAdministrateur;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 public class GenererStatistiques extends javax.swing.JFrame {
 
     public GenererStatistiques() {
@@ -14,7 +12,7 @@ public class GenererStatistiques extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,12 +22,12 @@ public class GenererStatistiques extends javax.swing.JFrame {
         boutton_StatistiqueCovoitureur = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         boutton_StatistiqueCovoiturage = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         boutton_Retour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        boutton_StatistiqueCovoitureur.setText("Statistique Covoitureurs");
+        boutton_StatistiqueCovoitureur.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        boutton_StatistiqueCovoitureur.setText("Statistiques des covoitureurs");
         boutton_StatistiqueCovoitureur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutton_StatistiqueCovoitureurActionPerformed(evt);
@@ -38,15 +36,13 @@ public class GenererStatistiques extends javax.swing.JFrame {
 
         jButton2.setText("Statistique Covoitureur");
 
-        boutton_StatistiqueCovoiturage.setText("Statistique Covoiturages");
+        boutton_StatistiqueCovoiturage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        boutton_StatistiqueCovoiturage.setText("Statistiques des covoiturages");
         boutton_StatistiqueCovoiturage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutton_StatistiqueCovoiturageActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Statistiques");
 
         boutton_Retour.setText("Retour");
         boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
@@ -60,42 +56,36 @@ public class GenererStatistiques extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutton_StatistiqueCovoiturage, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(boutton_StatistiqueCovoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(17, 17, 17)))
-                .addGap(129, 129, 129))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_StatistiqueCovoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                    .addComponent(boutton_StatistiqueCovoiturage, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(123, 123, 123)
                 .addComponent(boutton_Retour)
-                .addGap(27, 27, 27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(134, Short.MAX_VALUE)
+                    .addContainerGap(44, Short.MAX_VALUE)
                     .addComponent(jButton2)
                     .addGap(123, 123, 123)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(boutton_StatistiqueCovoitureur)
-                .addGap(39, 39, 39)
-                .addComponent(boutton_StatistiqueCovoiturage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(boutton_StatistiqueCovoitureur, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_StatistiqueCovoiturage, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(boutton_Retour)
-                .addGap(20, 20, 20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(124, 124, 124)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(176, Short.MAX_VALUE)))
+                    .addContainerGap(107, Short.MAX_VALUE)))
         );
 
         pack();
@@ -130,6 +120,5 @@ public class GenererStatistiques extends javax.swing.JFrame {
     private javax.swing.JButton boutton_StatistiqueCovoiturage;
     private javax.swing.JButton boutton_StatistiqueCovoitureur;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

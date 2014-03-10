@@ -1,7 +1,5 @@
 package team.esprit.presentationAdministrateur;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 public class AfficherUnCovoiturage1 extends javax.swing.JFrame {
 
     public AfficherUnCovoiturage1() {
@@ -9,20 +7,20 @@ public class AfficherUnCovoiturage1 extends javax.swing.JFrame {
         this.dispose();
     }
     
-    public AfficherUnCovoiturage1(String ch) {
+    public AfficherUnCovoiturage1(String informations) {
         initComponents();
         setTitle("Afficher un covoiturage");
         initialise();
-        ta_Afficher.setLineWrap(true);
-        ta_Afficher.setWrapStyleWord(true);
-        ta_Afficher.setText(ch);
+        ta_Afficher.setText(informations);
     }
     
     public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ta_Afficher.setLineWrap(true);
+        ta_Afficher.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -74,8 +72,7 @@ public class AfficherUnCovoiturage1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        RechercherCovoiturage rechercherCovoiturage = new RechercherCovoiturage();
-        rechercherCovoiturage.setVisible(true);
+        new RechercherCovoiturage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_RetourActionPerformed
 

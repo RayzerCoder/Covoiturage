@@ -15,7 +15,7 @@ import team.esprit.dao.ParticipantDAO;
 import team.esprit.dao.ReservationDAO;
 import team.esprit.entities.Covoiturage;
 import team.esprit.entities.Covoitureur;
-import team.esprit.presentationAdministrateur.Authentification;
+import team.esprit.presentation.Authentification;
 
 public class ConsulterCovoiturage extends javax.swing.JFrame {
 
@@ -51,7 +51,7 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -78,6 +78,7 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
         ta_Afficher.setRows(5);
         jScrollPane1.setViewportView(ta_Afficher);
 
+        boutton_Retour.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Retour.setText("Retour");
         boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,8 +100,10 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
         buttonGroup1.add(rb_Annuler);
         rb_Annuler.setText("Annuler");
 
+        boutton_Modifier.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Modifier.setText("Modifier");
 
+        boutton_Valider.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Valider.setText("Valider / Annuler réservation");
         boutton_Valider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,9 +111,15 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
             }
         });
 
+        button_Consulter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         button_Consulter.setText("Consulter Profil");
+        button_Consulter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_ConsulterActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Demandes de réservations :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,13 +131,17 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addGap(60, 60, 60)
                         .addComponent(boutton_Retour)
-                        .addGap(85, 85, 85)
+                        .addGap(89, 89, 89)
                         .addComponent(boutton_Modifier)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(button_Consulter, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(rb_Confirmer)
@@ -138,14 +151,11 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(button_Consulter, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boutton_Valider))
-                        .addGap(40, 40, 40))))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(boutton_Valider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,9 +165,9 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boutton_Modifier)
-                            .addComponent(boutton_Retour)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(boutton_Modifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boutton_Retour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,9 +187,7 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        ConsulterMesCovoiturages consulterMesCovoiturages = new ConsulterMesCovoiturages(covoitureurConnecte);
         this.dispose();
-        consulterMesCovoiturages.setVisible(true);
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
     private void boutton_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ValiderActionPerformed
@@ -261,6 +269,27 @@ public class ConsulterCovoiturage extends javax.swing.JFrame {
             Logger.getLogger(ConsulterCovoiturage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_list_ResevationsMouseClicked
+
+    private void button_ConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_ConsulterActionPerformed
+        Covoitureur covoitureurSelectionne = new CovoitureurDAO().afficherCovoitureur_NomUtilisateur(list_Resevations.getSelectedValue().toString());
+        String informations = "Addresse E-Mail: " + covoitureurSelectionne.getEmail()
+                    + "\n\nNom d'Uuilisateur: " + covoitureurSelectionne.getNomUtilisateur()
+                    + "\n\nNom: " + covoitureurSelectionne.getNom()
+                    + "\n\nPrénom: " + covoitureurSelectionne.getPrenom()
+                    + "\n\nSexe: " + covoitureurSelectionne.getSexe()
+                    + "\n\nFumeur: " + covoitureurSelectionne.isFumeur()
+                    + "\n\nDate de naissance: " + covoitureurSelectionne.getDateNaissance()
+                    + "\n\nDate d'enregistrement: " + covoitureurSelectionne.getDateEnregistrement()
+                    + "\n\nNote: " + covoitureurSelectionne.getNote()
+                    + "\n\nEtat: " + covoitureurSelectionne.getEtat()
+                    + "\n\nAvatar: " + covoitureurSelectionne.getAvatar()
+                    + "\n\nSkype: " + covoitureurSelectionne.getSkype()
+                    + "\n\nFacebook: " + covoitureurSelectionne.getFacebook()
+                    + "\n\nDate de la derniére visite: " + covoitureurSelectionne.getDateDerniereVisite()
+                    + "\n\nCle activation: " + covoitureurSelectionne.getCleActivation()
+                    + "\n\nID Facebook: " + covoitureurSelectionne.getIdFacebook();
+        new ConsulterCovoitureur(informations, covoitureurSelectionne.getId()).setVisible(true);
+    }//GEN-LAST:event_button_ConsulterActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

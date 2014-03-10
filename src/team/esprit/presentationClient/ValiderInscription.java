@@ -1,11 +1,10 @@
 package team.esprit.presentationClient;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
-import team.esprit.controllers.MailController;
+import team.esprit.util.MailSender;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
-import team.esprit.presentationAdministrateur.Authentification;
+import team.esprit.presentation.Authentification;
 
 public class ValiderInscription extends javax.swing.JFrame {
 
@@ -27,7 +26,7 @@ public class ValiderInscription extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +42,7 @@ public class ValiderInscription extends javax.swing.JFrame {
 
         jLabel1.setText("Veuillez entrer la clé de confirmation que vous avez reçu par email:");
 
+        boutton_Valider.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Valider.setText("Valider");
         boutton_Valider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +50,7 @@ public class ValiderInscription extends javax.swing.JFrame {
             }
         });
 
+        boutton_Retour.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Retour.setText("Retour");
         boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +100,7 @@ public class ValiderInscription extends javax.swing.JFrame {
 
     private void boutton_ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ValiderActionPerformed
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        MailController reclamationController = new MailController();
+        MailSender reclamationController = new MailSender();
         String destinataire = covoitureurConnecte.getEmail();
         String msg = "Vous pourriez dés maintenant vous procurez de toutes les fonctionnalitées de l'application.";
         

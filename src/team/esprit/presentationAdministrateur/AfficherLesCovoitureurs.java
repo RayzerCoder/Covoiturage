@@ -1,22 +1,24 @@
 package team.esprit.presentationAdministrateur;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
 
 public class AfficherLesCovoitureurs extends javax.swing.JFrame {
+
+    CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
+    Covoitureur covoitureur;
 
     public AfficherLesCovoitureurs() {
         initComponents();
         setTitle("Afficher les Covoitureurs");
         initialise();
     }
-    
+
     public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,26 +54,28 @@ public class AfficherLesCovoitureurs extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(boutton_AfficherUnCovoitureur)
+                        .addGap(110, 110, 110)
+                        .addComponent(boutton_Retour)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(boutton_AfficherUnCovoitureur)
-                .addGap(112, 112, 112)
-                .addComponent(boutton_Retour)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_AfficherUnCovoitureur)
                     .addComponent(boutton_Retour))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,10 +83,8 @@ public class AfficherLesCovoitureurs extends javax.swing.JFrame {
 
     private void boutton_AfficherUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AfficherUnCovoitureurActionPerformed
         int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
-        CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        Covoitureur covoitureur;
-        int id = (int) table_ListCovoitureurs.getValueAt(ligneSelectionne, 0);
-        covoitureur = covoitureurDAO.afficherCovoitureur_ID(id);
+        int idCovoitureur = (int) table_ListCovoitureurs.getValueAt(ligneSelectionne, 0);
+        covoitureur = covoitureurDAO.afficherCovoitureur_ID(idCovoitureur);
         String informations = null;
         informations = "ID:  " + covoitureur.getId()
                 + "\n\nAddresse E-Mail: " + covoitureur.getEmail()
@@ -101,14 +103,12 @@ public class AfficherLesCovoitureurs extends javax.swing.JFrame {
                 + "\n\nDate de derniére visite: " + covoitureur.getDateDerniereVisite()
                 + "\n\nCle d'activation: " + covoitureur.getCleActivation()
                 + "\n\nID Facebook: " + covoitureur.getIdFacebook();
-        AfficherUnCovoitureur afficherUnCovoitureur = new AfficherUnCovoitureur(informations);
-        afficherUnCovoitureur.setVisible(true);
+        new AfficherUnCovoitureur(informations).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_AfficherUnCovoitureurActionPerformed
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        GestionCovoitureurs gestionDeCovoitureur = new GestionCovoitureurs();
-        gestionDeCovoitureur.setVisible(true);
+        new GestionCovoitureurs().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_RetourActionPerformed
 

@@ -9,7 +9,7 @@ public class Message {
     private Covoitureur _destinataire;
     private String _objet;
     private String _contenu;
-    private Time _dateEnvoie; //a vérifier timestamp dans la bd .. et on en pas besoin seulement fel statistique en cas ou
+    private Time _dateEnvoie;
     private boolean _lu;
 
     public void setId(int _id) {

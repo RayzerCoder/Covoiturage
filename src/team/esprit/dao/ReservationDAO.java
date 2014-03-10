@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import team.esprit.Idao.IReservationDAO;
 import team.esprit.entities.Covoiturage;
 import team.esprit.entities.Covoitureur;
 import team.esprit.entities.Reservation;
 import team.esprit.util.MyConnection;
 
-public class ReservationDAO {
-    
+public class ReservationDAO implements IReservationDAO {
+
     public Reservation afficherReservation(int id) {
         CovoiturageDAO covoiturageDAO = new CovoiturageDAO();
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
@@ -33,6 +34,54 @@ public class ReservationDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+
+    public boolean envoyerDemande(Covoitureur covoitureur, Covoiturage covoiturage) {
+
+        String requete = "INSERT INTO  `covoiturage`.`reservations` ( "
+                + "`id` , "
+                + "`id_covoitureur` , "
+                + "`id_covoiturage` , "
+                + "`date_reservation` , "
+                + "`etat` "
+                + ") "
+                + "VALUES ( "
+                + "NULL ,  '" + covoitureur.getId() + "',  '" + covoiturage.getId() + "', "
+                + "CURRENT_TIMESTAMP ,  '0'"
+                + ");";
+
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.executeUpdate();
+            System.out.println("Reservation ENVOYEE");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de l'envoie de la reservation " + ex.getMessage());
+            return false;
+        }
+    }
+    //goes to controller
+
+    public int reservationParCovoitureur(Covoitureur covoitureur, Covoiturage covoiturage) {
+        String requete = "SELECT COUNT( id_covoitureur ) "
+                + "FROM reservations "
+                + "WHERE id_covoitureur = " + covoitureur.getId()
+                + " AND id_covoiturage =" + covoiturage.getId();
+        int res = 0;
+        try {
+            Statement statement = MyConnection.getInstance().createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while (resultat.next()) {
+                res = res + (resultat.getInt(1));
+
+            }
+            return res;
+
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors du comptage " + ex.getMessage());
+            return res;
         }
     }
 
@@ -105,11 +154,11 @@ public class ReservationDAO {
         return true;
     }
 
+    @Override
     public List<Reservation> afficherReservationsCovoitureur(Covoitureur covoitureur) {
         CovoiturageDAO covoiturageDAO = new CovoiturageDAO();
         List<Reservation> listReservations = new ArrayList<Reservation>();
-        String requete = "SELECT * FROM reservations r, covoiturages c WHERE id_covoitureur = " + covoitureur.getId()
-                + " AND c.id = r.id";
+        String requete = "SELECT * FROM reservations  WHERE id_covoitureur = " + covoitureur.getId();
         try {
             Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);

@@ -1,9 +1,7 @@
 package team.esprit.presentationAdministrateur;
 
 import java.util.List;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
 
@@ -19,7 +17,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +25,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     private void initComponents() {
 
         boutton_ModifierUnCovoitureur = new javax.swing.JButton();
-        boutton_SupprimerUnCovoitureur = new javax.swing.JButton();
+        boutton_BloquerUnCovoitureur = new javax.swing.JButton();
         boutton_AfficherUnCovoitureur = new javax.swing.JButton();
         boutton_Retour = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -46,10 +44,10 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
             }
         });
 
-        boutton_SupprimerUnCovoitureur.setText("Supprimer un covoitureur");
-        boutton_SupprimerUnCovoitureur.addActionListener(new java.awt.event.ActionListener() {
+        boutton_BloquerUnCovoitureur.setText("Bloquer un covoitureur");
+        boutton_BloquerUnCovoitureur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutton_SupprimerUnCovoitureurActionPerformed(evt);
+                boutton_BloquerUnCovoitureurActionPerformed(evt);
             }
         });
 
@@ -94,7 +92,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(boutton_Retour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boutton_SupprimerUnCovoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                            .addComponent(boutton_BloquerUnCovoitureur, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(boutton_AfficherUnCovoitureur, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -123,7 +121,7 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_ModifierUnCovoitureur)
-                    .addComponent(boutton_SupprimerUnCovoitureur)
+                    .addComponent(boutton_BloquerUnCovoitureur)
                     .addComponent(boutton_AfficherUnCovoitureur))
                 .addGap(18, 18, 18)
                 .addComponent(boutton_Retour)
@@ -133,21 +131,20 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boutton_SupprimerUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_SupprimerUnCovoitureurActionPerformed
+    private void boutton_BloquerUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_BloquerUnCovoitureurActionPerformed
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
         int id = (int) table_ListCovoitureurs.getValueAt(ligneSelectionne, 0);
-        int choix = JOptionPane.showConfirmDialog(this, "Voulez vous vraiment supprimer ce Covotireur ?", "", 0);
+        int choix = JOptionPane.showConfirmDialog(this, "Voulez vous vraiment bloquer ce covotireur ?", "", 0);
         if (choix == 0) {
-            if (covoitureurDAO.supprimerCovoitureur(id)) {
-                JOptionPane.showMessageDialog(this, "Le covoitureur a été supprimé avec succés.");
+            if (covoitureurDAO.bloquerCovoitureur(id)) {
+                JOptionPane.showMessageDialog(this, "Le covoitureur a été bloqué avec succés.");
+                table_ListCovoitureurs.setModel(new AfficherLesCovoitureursTable());
             } else {
-                JOptionPane.showMessageDialog(this, "Le covoitureur n'a pas été supprimé.");
+                JOptionPane.showMessageDialog(this, "Le covoitureur n'a pas été bloqué.");
             }
         }
-
-        table_ListCovoitureurs.setModel(new AfficherLesCovoitureursTable());
-    }//GEN-LAST:event_boutton_SupprimerUnCovoitureurActionPerformed
+    }//GEN-LAST:event_boutton_BloquerUnCovoitureurActionPerformed
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
         GestionCovoitureurs gestionDescovoitueurs = new GestionCovoitureurs();
@@ -190,7 +187,6 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     private void boutton_ModifierUnCovoitureurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ModifierUnCovoitureurActionPerformed
         int ligneSelectionne = table_ListCovoitureurs.getSelectedRow();
         int id = (int) table_ListCovoitureurs.getValueAt(ligneSelectionne, 0);
-
         CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
         Covoitureur covoitureur;
         covoitureur = covoitureurDAO.afficherCovoitureur_ID(id);
@@ -219,10 +215,10 @@ public class RechercherCovoitureur extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutton_AfficherUnCovoitureur;
+    private javax.swing.JButton boutton_BloquerUnCovoitureur;
     private javax.swing.JButton boutton_ModifierUnCovoitureur;
     private javax.swing.JButton boutton_Rechercher;
     private javax.swing.JButton boutton_Retour;
-    private javax.swing.JButton boutton_SupprimerUnCovoitureur;
     private javax.swing.JComboBox cb_Critere;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

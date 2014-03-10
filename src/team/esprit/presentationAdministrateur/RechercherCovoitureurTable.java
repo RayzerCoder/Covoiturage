@@ -9,7 +9,7 @@ public class RechercherCovoitureurTable extends AbstractTableModel {
 
     String ch;
     List<Covoitureur> listeCovoitureurs;
-    String[] columTab = {"ID", "Nom", "Prenom", "Email", "Nom d'utilisateur"};
+    String[] columTab = {"ID", "Nom", "Prenom", "Email", "Nom d'utilisateur", "Etat"};
 
     public RechercherCovoitureurTable(String ch) {
         this.ch = ch;
@@ -40,6 +40,8 @@ public class RechercherCovoitureurTable extends AbstractTableModel {
                 return listeCovoitureurs.get(rowIndex).getEmail();
             case 4:
                 return listeCovoitureurs.get(rowIndex).getNomUtilisateur();
+            case 5:
+                return listeCovoitureurs.get(rowIndex).getEtat();
             default:
                 return null;
         }

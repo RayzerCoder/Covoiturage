@@ -74,8 +74,7 @@ public class AfficherUnCovoiturage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        AfficherLesCovoiturages afficherLesCovoiturages = new AfficherLesCovoiturages();
-        afficherLesCovoiturages.setVisible(true);
+        new AfficherLesCovoiturages().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_RetourActionPerformed
 

@@ -1,6 +1,5 @@
 package team.esprit.presentationClient;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 import team.esprit.dao.ReclamationDAO;
 import team.esprit.entities.Covoitureur;
@@ -32,7 +31,7 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -58,8 +57,9 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
         ta_Message.setRows(5);
         jScrollPane1.setViewportView(ta_Message);
 
-        cb_Type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Réclamation de type 1", "Réclamation de type 2", "Réclamation de type 3", "Réclamation de type 4", "Réclamation de type 5", "Réclamation de type 6" }));
+        cb_Type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Signaler un probléme technique", "Signaler un compte", "Suggérer des améliorations", "Poser des questions" }));
 
+        boutton_Envoyer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Envoyer.setText("Envoyer");
         boutton_Envoyer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +67,7 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
             }
         });
 
+        boutton_Annuler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Annuler.setText("Annuler");
         boutton_Annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +93,7 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cb_Type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tf_Email))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(boutton_Envoyer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(boutton_Annuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -120,7 +121,7 @@ public class EnvoyerReclamation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AnnulerActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_boutton_AnnulerActionPerformed
 
     private void boutton_EnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_EnvoyerActionPerformed

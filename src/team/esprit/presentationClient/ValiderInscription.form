@@ -67,6 +67,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Valider">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Valider"/>
       </Properties>
       <Events>
@@ -75,6 +78,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Retour">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Retour"/>
       </Properties>
       <Events>

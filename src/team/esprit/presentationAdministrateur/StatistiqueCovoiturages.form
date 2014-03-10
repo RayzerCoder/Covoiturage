@@ -36,11 +36,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="boutton_GenererRapport" pref="138" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cb_Imprimer" pref="92" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                       <Component id="boutton_Retour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -59,17 +57,16 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="boutton_CovoituragesCreesAnnee" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="boutton_CovoiturageCreesMois" min="-2" pref="51" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="boutton_VillesPlusVisitees" pref="53" max="32767" attributes="0"/>
+              <Component id="boutton_VillesPlusVisitees" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="boutton_GenererRapport" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cb_Imprimer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boutton_Retour" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,11 +100,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="G&#xe9;n&#xe9;rer Rapport"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="cb_Imprimer">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Imprimer"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutton_GenererRapportActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boutton_Retour">
       <Properties>

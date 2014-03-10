@@ -1,15 +1,16 @@
 package team.esprit.dao;
 
-import java.awt.Component;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import team.esprit.Idao.IAdministrateurDAO;
 import team.esprit.entities.Administrateur;
 import team.esprit.util.MyConnection;
 
-public class AdministrateurDAO {
+public class AdministrateurDAO implements IAdministrateurDAO {
 
+    @Override
     public Administrateur afficherInformations() {
         Administrateur administrateur = new Administrateur();
         String requete = "SELECT * FROM administrateurs";
@@ -29,6 +30,7 @@ public class AdministrateurDAO {
         }
     }
 
+    @Override
     public boolean modifierMotPasse(Administrateur administrateur, String newPass) {
         String requete = "UPDATE administrateurs SET mdp = ? WHERE email = '" + administrateur.getEmail() + "'";
         try {

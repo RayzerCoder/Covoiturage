@@ -1,5 +1,6 @@
 package team.esprit.presentationAdministrateur;
 
+import team.esprit.presentation.Authentification;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -7,9 +8,8 @@ import java.sql.Date;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
-import team.esprit.controllers.MailController;
+import team.esprit.util.MailSender;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.entities.Covoitureur;
 
@@ -17,6 +17,9 @@ public class AjouterCovoitureur extends javax.swing.JFrame {
 
     private static final String _regexAdressEmail = "^[^\\W][a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$";
     private static final String _regexMdp = "^\\S*(?=\\S{8,})(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*[\\d])\\S*$";
+    CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
+    MailSender reclamationController = new MailSender();
+    Covoitureur covoitureur = new Covoitureur();
 
     public AjouterCovoitureur() {
         initComponents();
@@ -28,7 +31,7 @@ public class AjouterCovoitureur extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public String creerCleAvtivation() {
@@ -36,12 +39,10 @@ public class AjouterCovoitureur extends javax.swing.JFrame {
     }
 
     public String MD5Crypt(char[] textField) {
-        String mdp = "";
+        String mdp = "", hashText;
         MessageDigest messageDigest;
         byte[] digest;
         BigInteger bigInt;
-        String hashText;
-
         try {
             for (int i = 0; i < textField.length; i++) {
                 mdp = mdp + textField[i];
@@ -137,16 +138,12 @@ public class AjouterCovoitureur extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        GestionCovoitureurs gestionCovoitueur = new GestionCovoitureurs();
-        gestionCovoitueur.setVisible(true);
+        new GestionCovoitureurs().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_RetourActionPerformed
 
+    @SuppressWarnings("deprecated")
     private void boutton_AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AjouterActionPerformed
-        CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        MailController reclamationController = new MailController();
-        Covoitureur covoitureur = new Covoitureur();
-
         if (tf_Email.getText().matches(_regexAdressEmail) == false) {
             JOptionPane.showMessageDialog(this, "Adresse E-Mail invalide !", null, 2);
         } else if (tf_Email.getText().matches(_regexAdressEmail) == true) {
@@ -158,8 +155,8 @@ public class AjouterCovoitureur extends javax.swing.JFrame {
                 covoitureur.setNomUtilisateur(null);
                 covoitureur.setNom(null);
                 covoitureur.setPrenom(null);
-                char sexe = 'X';
-                covoitureur.setSexe(sexe);
+                //char sexe = 'X';
+                covoitureur.setSexe('X');
                 covoitureur.setFumeur(false);
                 covoitureur.setDateNaissance(Date.valueOf("1991-01-01"));
                 covoitureur.setNote(0);

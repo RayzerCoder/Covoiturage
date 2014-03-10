@@ -10,10 +10,21 @@ public class Notification {
     private Time _dateCreation;
     private String _contenu;
     private int _type;
+    private boolean _lu;
+
     //0 : annulé par le conducteur
     //1 : confirmé par le conducteur
-    //3 : en tant que covoitureur j'ai annulé ma réservation
-    //4 : Le covoiturage a été supprimé
+    //2 : en tant que passager j'ai annulé ma réservation
+    //3 : Le covoiturage a été supprimé
+    //4 : en tant que passager j'ai réservé une place donc tji demande lel conducteur
+    //5 : Le conducteur a modifié le covoiturage
+    public boolean isLu() {
+        return _lu;
+    }
+
+    public void setLu(boolean _lu) {
+        this._lu = _lu;
+    }
 
     public void setId(int _id) {
         this._id = _id;

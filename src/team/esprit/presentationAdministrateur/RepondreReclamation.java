@@ -1,39 +1,37 @@
 package team.esprit.presentationAdministrateur;
 
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import team.esprit.controllers.MailController;
+import team.esprit.util.MailSender;
 import team.esprit.dao.ReclamationDAO;
 import team.esprit.entities.Reclamation;
 
 public class RepondreReclamation extends javax.swing.JFrame {
 
-    int id;
-    
-    public void set_tf_Email(String ch) {
-        tf_Email.setText(ch);
-    }
+    MailSender mailController = new MailSender();
+    Reclamation reclamation = new Reclamation();
+    ReclamationDAO reclamationDAO = new ReclamationDAO();
+    int idReclamation;
 
     public RepondreReclamation() {
         this.dispose();
+        initialise();
     }
-    
-    public RepondreReclamation(int id) {
+
+    public RepondreReclamation(int idReclamation) {
         initComponents();
         setTitle("Répondre à une réclamation");
         initialise();
-        ta_Message.setLineWrap(true);
-        ta_Message.setWrapStyleWord(true);
-        this.id = id;
+        this.idReclamation = idReclamation;
+        reclamation = reclamationDAO.afficherReclamation(idReclamation);
     }
 
     public void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ta_Message.setLineWrap(true);
+        ta_Message.setWrapStyleWord(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -143,19 +141,15 @@ public class RepondreReclamation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AnnulerActionPerformed
-        GestionReclamations gestionDesReclamations = new GestionReclamations();
-        gestionDesReclamations.setVisible(true);
+        new GestionReclamations().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_AnnulerActionPerformed
 
     private void boutton_EnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_EnvoyerActionPerformed
         String destinataire = tf_Email.getText();
         String msg = ta_Message.getText();
-        ReclamationDAO reclamationDAO = new ReclamationDAO();
-        MailController reclamationController = new MailController();
-        
-        if (reclamationController.repondreReclamation(destinataire, msg) == true) {
-            reclamationDAO.modifierReclamation(id);
+        if (mailController.repondreReclamation(destinataire, msg) == true) {
+            reclamationDAO.modifierReclamation(idReclamation);
             JOptionPane.showMessageDialog(this, "Votre message a été transmis vers l'adresse: " + destinataire);
         } else {
             JOptionPane.showMessageDialog(this, "Votre message n'a pas été transmis vers l'adresse: " + destinataire);
@@ -180,16 +174,7 @@ public class RepondreReclamation extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RepondreReclamation.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RepondreReclamation.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

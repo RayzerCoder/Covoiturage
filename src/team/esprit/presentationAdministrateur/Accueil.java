@@ -1,7 +1,5 @@
 package team.esprit.presentationAdministrateur;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 public class Accueil extends javax.swing.JFrame {
 
     public Accueil() {
@@ -25,10 +23,10 @@ public class Accueil extends javax.swing.JFrame {
         boutton_Covoiturages = new javax.swing.JButton();
         boutton_Reclamations = new javax.swing.JButton();
         boutton_Statistiques = new javax.swing.JButton();
-        boutton_Quitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        boutton_Covoitureurs.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         boutton_Covoitureurs.setText("Gestion des covoitureurs");
         boutton_Covoitureurs.setFocusable(false);
         boutton_Covoitureurs.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -39,6 +37,7 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
+        boutton_Covoiturages.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         boutton_Covoiturages.setText("Gestion des covoiturages");
         boutton_Covoiturages.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +45,7 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
+        boutton_Reclamations.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         boutton_Reclamations.setText("Gestion des réclamations");
         boutton_Reclamations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,17 +53,11 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
+        boutton_Statistiques.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         boutton_Statistiques.setText("Statistiques");
         boutton_Statistiques.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutton_StatistiquesActionPerformed(evt);
-            }
-        });
-
-        boutton_Quitter.setText("Quitter");
-        boutton_Quitter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutton_QuitterActionPerformed(evt);
             }
         });
 
@@ -72,35 +66,26 @@ public class Accueil extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(boutton_Covoitureurs)
-                        .addGap(44, 44, 44)
-                        .addComponent(boutton_Covoiturages))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(boutton_Reclamations)
-                        .addGap(44, 44, 44)
-                        .addComponent(boutton_Statistiques, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(boutton_Quitter, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(boutton_Reclamations, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(boutton_Covoitureurs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_Covoiturages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutton_Statistiques, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutton_Covoitureurs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boutton_Covoiturages, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(boutton_Covoitureurs, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boutton_Reclamations, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boutton_Statistiques, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(boutton_Covoiturages, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(boutton_Quitter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(boutton_Reclamations, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boutton_Statistiques, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,26 +93,18 @@ public class Accueil extends javax.swing.JFrame {
 
     private void boutton_StatistiquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_StatistiquesActionPerformed
         new GenererStatistiques().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_boutton_StatistiquesActionPerformed
-
-    private void boutton_QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_QuitterActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_boutton_QuitterActionPerformed
 
     private void boutton_ReclamationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_ReclamationsActionPerformed
         new GestionReclamations().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_boutton_ReclamationsActionPerformed
 
     private void boutton_CovoituragesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_CovoituragesActionPerformed
         new GestionCovoiturages().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_boutton_CovoituragesActionPerformed
 
     private void boutton_CovoitureursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_CovoitureursActionPerformed
         new GestionCovoitureurs().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_boutton_CovoitureursActionPerformed
 
     public static void main(String args[]) {
@@ -156,7 +133,6 @@ public class Accueil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutton_Covoiturages;
     private javax.swing.JButton boutton_Covoitureurs;
-    private javax.swing.JButton boutton_Quitter;
     private javax.swing.JButton boutton_Reclamations;
     private javax.swing.JButton boutton_Statistiques;
     // End of variables declaration//GEN-END:variables

@@ -8,7 +8,7 @@ import team.esprit.entities.Covoiturage;
 public class AfficherLesCovoituragesTable extends AbstractTableModel {
 
     List<Covoiturage> listCovoiturages;
-    String columnTab[] = {"ID", "Createur", "Ville de départ", "Ville d'arrivée", "Date de départ"};
+    String columnTab[] = {"ID", "Créateur", "Ville de départ", "Ville d'arrivée", "Date de départ"};
 
     public AfficherLesCovoituragesTable() {
         CovoiturageDAO covoiturageDAO = new CovoiturageDAO();

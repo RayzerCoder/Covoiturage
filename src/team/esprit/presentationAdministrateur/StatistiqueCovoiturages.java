@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import team.esprit.controllers.StatCovoiturageController;
+import team.esprit.util.GenererPDFCovoiturage;
 
 public class StatistiqueCovoiturages extends javax.swing.JFrame {
 
@@ -24,7 +26,7 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         directoryCovoitureur.mkdirs();
         date = new Date().toString();
         date = date.substring(4, 10);
@@ -40,7 +42,6 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         boutton_CovoiturageCreesMois = new javax.swing.JButton();
         boutton_VillesPlusVisitees = new javax.swing.JButton();
         boutton_GenererRapport = new javax.swing.JButton();
-        cb_Imprimer = new javax.swing.JCheckBox();
         boutton_Retour = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -69,8 +70,11 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         });
 
         boutton_GenererRapport.setText("Générer Rapport");
-
-        cb_Imprimer.setText("Imprimer");
+        boutton_GenererRapport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutton_GenererRapportActionPerformed(evt);
+            }
+        });
 
         boutton_Retour.setText("Retour");
         boutton_Retour.addActionListener(new java.awt.event.ActionListener() {
@@ -89,11 +93,9 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(boutton_GenererRapport, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cb_Imprimer, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                        .addGap(27, 27, 27)
+                        .addGap(116, 116, 116)
                         .addComponent(boutton_Retour)
-                        .addGap(65, 65, 65))
+                        .addGap(86, 86, 86))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(boutton_VillesPlusVisitees, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -106,16 +108,15 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(boutton_CovoituragesCreesAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(boutton_CovoiturageCreesMois, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(boutton_VillesPlusVisitees, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addComponent(boutton_VillesPlusVisitees, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_GenererRapport)
-                    .addComponent(cb_Imprimer)
                     .addComponent(boutton_Retour))
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
 
         pack();
@@ -166,6 +167,11 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
         frame.setSize(450, 400);
     }//GEN-LAST:event_boutton_VillesPlusVisiteesActionPerformed
 
+    private void boutton_GenererRapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_GenererRapportActionPerformed
+        GenererPDFCovoiturage.main(null);
+        JOptionPane.showMessageDialog(this, "Les rapport on été crées.");
+    }//GEN-LAST:event_boutton_GenererRapportActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -179,7 +185,6 @@ public class StatistiqueCovoiturages extends javax.swing.JFrame {
     private javax.swing.JButton boutton_GenererRapport;
     private javax.swing.JButton boutton_Retour;
     private javax.swing.JButton boutton_VillesPlusVisitees;
-    private javax.swing.JCheckBox cb_Imprimer;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

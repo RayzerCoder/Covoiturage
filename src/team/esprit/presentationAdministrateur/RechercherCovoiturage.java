@@ -1,7 +1,6 @@
 package team.esprit.presentationAdministrateur;
 
 import java.util.List;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import team.esprit.dao.CovoiturageDAO;
@@ -24,7 +23,7 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
         this.setVisible(true);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +31,7 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
     private void initComponents() {
 
         tf_Critere = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        label_Critere = new javax.swing.JLabel();
         cb_Critere = new javax.swing.JComboBox();
         boutton_Rechercher = new javax.swing.JButton();
         boutton_Retour = new javax.swing.JButton();
@@ -44,9 +43,9 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Critere :");
+        label_Critere.setText("Critere :");
 
-        cb_Critere.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conducteur","Ville Depart","Ville Arrivée","Date de départ" }));
+        cb_Critere.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Ville de départ", "Ville d'arrivée"}));
 
         boutton_Rechercher.setText("Rechercher");
         boutton_Rechercher.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +93,7 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cb_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
@@ -122,7 +121,7 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boutton_Rechercher)
                     .addComponent(cb_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(label_Critere)
                     .addComponent(tf_Critere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,8 +203,11 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
         int ligneSelectionne = table_ListCovoiturages.getSelectedRow();
         CovoiturageDAO covoiturageDAO = new CovoiturageDAO();
         int id = (int) table_ListCovoiturages.getValueAt(ligneSelectionne, 0);
+        System.out.println("    test id : " + id );
         Covoiturage covoiturage = covoiturageDAO.afficherCovoiturage_ID(id);
+        System.out.println("  test covoiturage 1" + covoiturage.toString());
         ModifierCovoiturage modifierCovoiturage = new ModifierCovoiturage(covoiturage);
+        System.out.println("  test covoiturage 2" + covoiturage.toString());
         modifierCovoiturage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_ModifierCovoiturageActionPerformed
@@ -223,9 +225,10 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
         int choix = JOptionPane.showConfirmDialog(this, "Voulez vous vraiment supprimer ce covoiturage ?", null, 1, QUESTION_MESSAGE);
         if (choix == 0) {
             if (covoiturageDAO.supprimerCovoiturage(id)) {
-                JOptionPane.showMessageDialog(this, "Le covoiturage a été supprimé avec succés");
+                JOptionPane.showMessageDialog(this, "Le covoiturage a été supprimé avec succés !");
+                table_ListCovoiturages.setModel(new AfficherLesCovoituragesTable());
             } else {
-                JOptionPane.showMessageDialog(this, evt, "Le covoiturage n'a été supprimé avec succés", 1);
+                JOptionPane.showMessageDialog(this, "Le covoiturage n'a été supprimé !");
             }
         }
     }//GEN-LAST:event_boutton_SupprimerCovoiturageActionPerformed
@@ -256,8 +259,8 @@ public class RechercherCovoiturage extends javax.swing.JFrame {
     private javax.swing.JButton boutton_Retour;
     private javax.swing.JButton boutton_SupprimerCovoiturage;
     private javax.swing.JComboBox cb_Critere;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_Critere;
     private javax.swing.JTable table_ListCovoiturages;
     private javax.swing.JTextField tf_Critere;
     // End of variables declaration//GEN-END:variables

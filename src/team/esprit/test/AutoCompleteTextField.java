@@ -24,7 +24,7 @@ public class AutoCompleteTextField {
         frame.setTitle("AutoCompleteList");
         frame.setSize(300, 75);
         frame.add(someTextField);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);
         

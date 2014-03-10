@@ -15,15 +15,15 @@ public class Reclamation {
     private String _email;
     private String _nomUtilisateur;
     private String _type;
-    private boolean _vu;
+    private boolean _vue;
     private String _message;
 
-    public boolean isVu() {
-        return _vu;
+    public boolean isVue() {
+        return _vue;
     }
 
-    public void setVu(boolean _etat) {
-        this._vu = _etat;
+    public void setVue(boolean _etat) {
+        this._vue = _etat;
     }
 
     public void setType(String _type) {

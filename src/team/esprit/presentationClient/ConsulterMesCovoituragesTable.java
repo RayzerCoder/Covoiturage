@@ -5,19 +5,18 @@ import javax.swing.table.AbstractTableModel;
 import team.esprit.dao.CovoiturageDAO;
 import team.esprit.entities.Covoiturage;
 import team.esprit.entities.Covoitureur;
-import team.esprit.presentationAdministrateur.Authentification;
+import team.esprit.presentation.Authentification;
 
 public class ConsulterMesCovoituragesTable extends AbstractTableModel {
     
     Covoitureur covoitureurConnecte = Authentification.covoitureurConnecte;
+    CovoiturageDAO covoiturageDAO = new CovoiturageDAO();
     
     List<Covoiturage> listCovoiturages;
     String[] columTab = {"ID", "Ville de départ", "Ville d'arrivée", "Date de départ", "Nombre de places restants"};
 
-    public ConsulterMesCovoituragesTable(Covoitureur covoitureur) {
-        this.covoitureurConnecte = covoitureur;
-        CovoiturageDAO covoiturageDAO = new CovoiturageDAO();
-        listCovoiturages = covoiturageDAO.afficherCovoituragesCovoitureurConnecte(covoitureur);
+    public ConsulterMesCovoituragesTable() {
+        listCovoiturages = covoiturageDAO.afficherCovoituragesCovoitureurConnecte(covoitureurConnecte);
     }
 
     @Override

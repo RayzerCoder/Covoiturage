@@ -2,10 +2,11 @@ package team.esprit.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import team.esprit.Idao.IStatistiqueDAO;
 import team.esprit.entities.Statistique;
 import team.esprit.util.MyConnection;
 
-public class StatistiqueDAO {
+public class StatistiqueDAO implements IStatistiqueDAO {
 
     public void ajouterStatistique(Statistique statistique) {
         String requete = "INSERT INTO statistiques (nom, type, chemin) VALUES (?, ?, ?)";

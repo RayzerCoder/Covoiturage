@@ -5,12 +5,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import team.esprit.Idao.IDetourDAO;
 import team.esprit.entities.Covoiturage;
 import team.esprit.entities.Ville;
 import team.esprit.util.MyConnection;
 
-public class DetourDAO {
+public class DetourDAO implements IDetourDAO {
 
+    @Override
     public List<Ville> afficherDetours(Covoiturage covoiturage) {
         List<Ville> listVilles = new ArrayList<Ville>();
         String requete = "SELECT v.* FROM Detours d, Villes v WHERE id_covoiturage = "

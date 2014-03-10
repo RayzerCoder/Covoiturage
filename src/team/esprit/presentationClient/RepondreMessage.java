@@ -1,32 +1,41 @@
 package team.esprit.presentationClient;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 import team.esprit.dao.CovoitureurDAO;
 import team.esprit.dao.MessageDAO;
 import team.esprit.entities.Covoitureur;
 import team.esprit.entities.Message;
+import team.esprit.presentation.Authentification;
 
 public class RepondreMessage extends javax.swing.JFrame {
 
+    Covoitureur covoitureurConnecte = Authentification.covoitureurConnecte;
+    ConsulterMesMessages consulterMesMessages = new ConsulterMesMessages();
+    CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
+    MessageDAO messageDAO = new MessageDAO();
+    Message message = new Message();
+    Covoitureur destinataire;
+    String mailTo, contenu;
+
     public RepondreMessage() {
         this.dispose();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        initialise();
     }
-    
-    public RepondreMessage(String ch) {
+
+    public RepondreMessage(String mailTo) {
         initComponents();
         setTitle("Répondre à un message");
+        initialise();
+        ta_Message.setLineWrap(true);
+        ta_Message.setWrapStyleWord(true);
+        tf_Email.setText(mailTo);
+    }
+    
+    private void initialise() {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ta_Message.setLineWrap(true);
-        ta_Message.setWrapStyleWord(true);
-        tf_Email.setText(ch);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +51,7 @@ public class RepondreMessage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        boutton_Annuler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Annuler.setText("Annuler");
         boutton_Annuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +59,7 @@ public class RepondreMessage extends javax.swing.JFrame {
             }
         });
 
+        boutton_Envoyer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         boutton_Envoyer.setText("Envoyer");
         boutton_Envoyer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,11 +74,6 @@ public class RepondreMessage extends javax.swing.JFrame {
         jLabel1.setText("To : ");
 
         tf_Email.setToolTipText("");
-        tf_Email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_EmailActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,7 +94,7 @@ public class RepondreMessage extends javax.swing.JFrame {
                 .addComponent(boutton_Envoyer)
                 .addGap(54, 54, 54)
                 .addComponent(boutton_Annuler)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,64 +116,25 @@ public class RepondreMessage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_AnnulerActionPerformed
-        ConsulterMesMessage consulterMesMessages = new ConsulterMesMessage();
-        consulterMesMessages.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_boutton_AnnulerActionPerformed
 
     private void boutton_EnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_EnvoyerActionPerformed
-        String destinataire = tf_Email.getText();
-        Covoitureur covoitureur = new Covoitureur();
-        CovoitureurDAO covoitureurDAO = new CovoitureurDAO();
-        covoitureur = covoitureurDAO.afficherCovoitureurEMAIL(destinataire);
-        MessageDAO messageDAO = new MessageDAO();
-        Message message = new Message();
-        Covoitureur cov = new Covoitureur();
-        cov = covoitureurDAO.afficherCovoitureur_ID(1);
-        String msg = ta_Message.getText();
-        message.setContenu(msg);
-        message.setExpediteur(cov);
-        message.setDestinataire(covoitureur);
-        if (messageDAO.envoyerMessage(covoitureur, message) == true) {
-            JOptionPane.showMessageDialog(this, "Votre message a été transmis vers l'adresse: " + destinataire);
+        mailTo = tf_Email.getText();
+        destinataire = covoitureurDAO.afficherCovoitureurEMAIL(mailTo);
+        contenu = ta_Message.getText();
+        message.setContenu(contenu);
+        message.setExpediteur(covoitureurConnecte);
+        message.setDestinataire(destinataire);
+        if (messageDAO.envoyerMessage(destinataire, message) == true) {
+            JOptionPane.showMessageDialog(this, "Votre message a été transmis vers l'adresse: " + mailTo);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Votre message n'a pas été transmis vers l'adresse: " + destinataire);
+            JOptionPane.showMessageDialog(this, "Votre message n'a pas été transmis vers l'adresse: " + mailTo);
         }
     }//GEN-LAST:event_boutton_EnvoyerActionPerformed
 
-    private void tf_EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_EmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_EmailActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RepondreMessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RepondreMessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RepondreMessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RepondreMessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RepondreMessage().setVisible(true);

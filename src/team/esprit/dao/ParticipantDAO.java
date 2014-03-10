@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import team.esprit.Idao.IParticipantDAO;
 import team.esprit.entities.Covoiturage;
 import team.esprit.entities.Covoitureur;
 import team.esprit.util.MyConnection;
 
-public class ParticipantDAO {
+public class ParticipantDAO implements IParticipantDAO {
 
     public List<Covoitureur> afficherParticipants(Covoiturage covoiturage) {
         List<Covoitureur> listParticipants = new ArrayList<Covoitureur>();
@@ -31,20 +32,24 @@ public class ParticipantDAO {
         }
     }
 
+    @Override
     public boolean ajouterParticipant(Covoitureur covoitureur, Covoiturage covoiturage) {
-        String requete = "INSERT INTO participants (id_covoiturage, id_participant) VALUES (?, ?)";
+        String requete = "INSERT INTO participants (id_covoiturage, id_participant) VALUES (" + covoiturage.getId() + " ," + covoitureur.getId() + ") ";
+        System.out.println(covoitureur.getNom());
+        System.out.println(covoiturage);
         try {
-            PreparedStatement preparedStatement = MyConnection.getInstance().prepareStatement(requete);
-            preparedStatement.setInt(1, covoiturage.getId());
-            preparedStatement.setInt(2, covoitureur.getId());
-            preparedStatement.executeUpdate();
+            Statement statement = MyConnection.getInstance().createStatement();
+//            preparedStatement.setInt(1, covoiturage.getId());
+//            preparedStatement.setInt(2, covoitureur.getId());
+            statement.executeUpdate(requete);
+            System.out.println("participe");
             return true;
         } catch (SQLException ex) {
             System.out.println("Erreur lors de l'ajout du Covoitureur " + ex.getMessage());
             return false;
         }
     }
-    
+
     public boolean supprimerParticipant(Covoitureur covoitureur, Covoiturage covoiturage) {
         String requete = "DELETE FROM participants WHERE id_covoiturage = ? AND id_participant = ?";
         try {

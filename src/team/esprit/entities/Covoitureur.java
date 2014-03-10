@@ -18,7 +18,7 @@ public class Covoitureur implements Comparator<Covoitureur> {
     private Date _dateEnregistrement;
     private int _note; // Somme des champs de la table évaluation
     private int _etat; // 0: Est bloqué , 1: Attente d'activation du mail  2: Mail Vérifié et Pas bloqué,
-    private String _avatar; // Un lien vers la photo de profil du Covoitureur
+    private byte[] _avatar; // Un lien vers la photo de profil du Covoitureur
     private String _skype; // Nom d'utilisateur de son compte skype
     private String _facebook; // Nom d'utilisateur de son Facebook ou bien son Lien Facebook
     private Date _dateDerniereVisite;
@@ -99,7 +99,7 @@ public class Covoitureur implements Comparator<Covoitureur> {
         this._etat = _etat;
     }
 
-    public void setAvatar(String _avatar) {
+    public void setAvatar(byte[] _avatar) {
         this._avatar = _avatar;
     }
 
@@ -163,7 +163,7 @@ public class Covoitureur implements Comparator<Covoitureur> {
         return _etat;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return _avatar;
     }
 

@@ -1,7 +1,5 @@
 package team.esprit.presentationAdministrateur;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 public class AfficherUnCovoitureur extends javax.swing.JFrame {
 
     public AfficherUnCovoitureur() {
@@ -19,7 +17,7 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ta_Covoitureur.setLineWrap(true);
         ta_Covoitureur.setWrapStyleWord(true);
     }
@@ -73,8 +71,7 @@ public class AfficherUnCovoitureur extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutton_RetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutton_RetourActionPerformed
-        AfficherLesCovoitureurs afficherlescovoitureurs = new AfficherLesCovoitureurs();
-        afficherlescovoitureurs.setVisible(true);
+        new AfficherLesCovoitureurs().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boutton_RetourActionPerformed
 

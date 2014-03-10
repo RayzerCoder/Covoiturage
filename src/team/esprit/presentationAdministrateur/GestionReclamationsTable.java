@@ -8,7 +8,7 @@ import java.util.List;
 public class GestionReclamationsTable extends AbstractTableModel {
 
     List<Reclamation> listReclamations;
-    String columnTab[] = {"ID", "De la part de", "Type de réclamation", "Vu", "Message"};
+    String columnTab[] = {"ID", "Expéditeur", "Type de réclamation", "Vue", "Contenu"};
 
     public GestionReclamationsTable() {
         ReclamationDAO reclamationDAO = new ReclamationDAO();
@@ -40,7 +40,7 @@ public class GestionReclamationsTable extends AbstractTableModel {
             case 2:
                 return listReclamations.get(rowIndex).getType();
             case 3:
-                return listReclamations.get(rowIndex).isVu();
+                return listReclamations.get(rowIndex).isVue();
             case 4:
                 return listReclamations.get(rowIndex).getMessage();
             default:
